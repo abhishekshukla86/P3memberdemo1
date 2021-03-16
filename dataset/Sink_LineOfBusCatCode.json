@@ -1,0 +1,25 @@
+{
+	"name": "Sink_LineOfBusCatCode",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sink_StagingDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Line_Of_Business_Category_Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Line_Of_Business_Category_Code_Desc",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "REF_LineOfBusinessCategoryCode"
+		}
+	}
+}

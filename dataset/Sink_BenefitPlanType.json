@@ -1,0 +1,25 @@
+{
+	"name": "Sink_BenefitPlanType",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sink_StagingDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Benefit_Plan_type_code",
+				"type": "varchar"
+			},
+			{
+				"name": "Benefit_Plan_type_Desc",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "REF_BenefitPlantype"
+		}
+	}
+}
