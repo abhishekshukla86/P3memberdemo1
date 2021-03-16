@@ -1,0 +1,7 @@
+{
+	"name": "IRSelfHosted1",
+	"properties": {
+		"type": "SelfHosted",
+		"description": "self hosted runtime on HP"
+	}
+}
