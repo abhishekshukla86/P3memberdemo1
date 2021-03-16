@@ -10,6 +10,15 @@
 		},
 		"STGDBMemberP3_connectionString": {
 			"value": ""
+		},
+		"StagingDB_connectionString": {
+			"value": ""
+		},
+		"MemberSourceBlob_connectionString": {
+			"value": ""
+		},
+		"Sink_StagingDB_connectionString": {
+			"value": ""
 		}
 	}
 }

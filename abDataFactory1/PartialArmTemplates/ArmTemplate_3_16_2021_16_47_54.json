@@ -6,26 +6,6 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "abDataFactory1"
-		},
-		"REF_Data_P3MemberCSV_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'REF_Data_P3MemberCSV'"
-		},
-		"STGDBMemberP3_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'STGDBMemberP3'"
-		},
-		"StagingDB_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'StagingDB'"
-		},
-		"MemberSourceBlob_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'MemberSourceBlob'"
-		},
-		"Sink_StagingDB_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'Sink_StagingDB'"
 		}
 	},
 	"variables": {
@@ -104,15 +84,13 @@
 						"inputs": [
 							{
 								"referenceName": "Source_Lineofbusinesscatcode",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "Sink_LineOfBusCatCode",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					},
@@ -201,15 +179,13 @@
 						"inputs": [
 							{
 								"referenceName": "Source_LineOfBusSubCAtCode",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "Sink_LineOfBusSubCatCode",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					},
@@ -260,15 +236,13 @@
 						"inputs": [
 							{
 								"referenceName": "Souce_PopulationCatCode",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "Sink_PopulationCatCode",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					},
@@ -345,15 +319,13 @@
 						"inputs": [
 							{
 								"referenceName": "Source_ContractCatCode",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "Sink_ContractCatCode",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					},
@@ -404,15 +376,13 @@
 						"inputs": [
 							{
 								"referenceName": "Source_BenefitPlanType",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "Sink_BenefitPlanType",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					},
@@ -460,15 +430,13 @@
 						"inputs": [
 							{
 								"referenceName": "Source_RefData_excel",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "Sink_RefData",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					}
@@ -489,69 +457,6 @@
 				"[concat(variables('factoryId'), '/datasets/Source_RefData_excel')]",
 				"[concat(variables('factoryId'), '/datasets/Sink_RefData')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/IRSelfHosted1')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "SelfHosted",
-				"description": "self hosted runtime on HP",
-				"typeProperties": {}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/REF_Data_P3MemberCSV')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('REF_Data_P3MemberCSV_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/STGDBMemberP3')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"connectionString": "[parameters('STGDBMemberP3_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/StagingDB')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"connectionString": "[parameters('StagingDB_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/MemberSourceBlob')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('MemberSourceBlob_connectionString')]"
-				}
-			},
-			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Source_Lineofbusinesscatcode')]",
@@ -586,21 +491,6 @@
 					}
 				]
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/MemberSourceBlob')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Sink_StagingDB')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"connectionString": "[parameters('Sink_StagingDB_connectionString')]"
-				}
-			},
 			"dependsOn": []
 		},
 		{
@@ -629,9 +519,7 @@
 					"table": "REF_LineOfBusinessCategoryCode"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Sink_StagingDB')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Source_LineOfBusSubCAtCode')]",
@@ -670,9 +558,7 @@
 					}
 				]
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/MemberSourceBlob')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Sink_LineOfBusSubCatCode')]",
@@ -704,9 +590,7 @@
 					"table": "REF_LineOfBusinessSubCategoryCode"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Sink_StagingDB')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Souce_PopulationCatCode')]",
@@ -745,9 +629,7 @@
 					}
 				]
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/MemberSourceBlob')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Sink_PopulationCatCode')]",
@@ -779,9 +661,7 @@
 					"table": "REF_PopulationCategoryCode"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Sink_StagingDB')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Source_ContractCatCode')]",
@@ -816,9 +696,7 @@
 					}
 				]
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/MemberSourceBlob')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Sink_ContractCatCode')]",
@@ -846,9 +724,7 @@
 					"table": "REF_ContractCategoryCode"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Sink_StagingDB')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Source_BenefitPlanType')]",
@@ -883,9 +759,7 @@
 					}
 				]
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/MemberSourceBlob')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Sink_BenefitPlanType')]",
@@ -913,9 +787,7 @@
 					"table": "REF_BenefitPlantype"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Sink_StagingDB')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Source_RefData_excel')]",
@@ -956,9 +828,7 @@
 					}
 				]
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/MemberSourceBlob')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Sink_RefData')]",
@@ -999,9 +869,7 @@
 					"table": "REF_Data"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Sink_StagingDB')]"
-			]
+			"dependsOn": []
 		}
 	]
 }
