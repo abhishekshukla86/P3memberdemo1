@@ -1,0 +1,36 @@
+{
+	"name": "P3MemberRefData",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "REF_Data_P3MemberCSV",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "SRC_LineOfBusinessSubCategoryCode.csv",
+				"container": "memberrefdata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Code",
+				"type": "String"
+			},
+			{
+				"name": "Description",
+				"type": "String"
+			},
+			{
+				"name": "LOBCategory",
+				"type": "String"
+			}
+		]
+	}
+}
