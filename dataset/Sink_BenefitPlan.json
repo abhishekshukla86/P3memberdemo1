@@ -1,0 +1,35 @@
+{
+	"name": "Sink_BenefitPlan",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Staging_P3_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Enrollment_Benefit_Plan_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Enrollment_Contract_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Plan_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "Plan_Benefit_ID",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "REF_BenefitPlantype"
+		}
+	}
+}
