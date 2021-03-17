@@ -1,9 +1,9 @@
 {
-	"name": "DataFlow1",
+	"name": "ContractCatCode_DataFlow",
 	"properties": {
 		"activities": [
 			{
-				"name": "Data flow1",
+				"name": "ContractCatCode_flow",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
