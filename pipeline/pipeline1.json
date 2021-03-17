@@ -181,66 +181,6 @@
 					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"name": "Reference_Code",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "Ref_Data_ID",
-									"type": "Int32",
-									"physicalType": "int"
-								}
-							},
-							{
-								"source": {
-									"name": "Table",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "Ref_Table",
-									"type": "String",
-									"physicalType": "varchar"
-								}
-							},
-							{
-								"source": {
-									"name": "Field",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "Ref_Field",
-									"type": "String",
-									"physicalType": "varchar"
-								}
-							},
-							{
-								"source": {
-									"name": "Reference_Code_Value",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "Reference_Code",
-									"type": "String",
-									"physicalType": "varchar"
-								}
-							},
-							{
-								"source": {
-									"name": ""
-								},
-								"sink": {
-									"name": "Reference_Code_Description",
-									"type": "String",
-									"physicalType": "varchar"
-								}
-							}
-						],
 						"typeConversion": true,
 						"typeConversionSettings": {
 							"allowDataTruncation": true,
