@@ -1,0 +1,30 @@
+{
+	"name": "Source_contractCatCode_excel",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MemberSourceBlob",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "SRC_ContractCategoryCode2",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "SRC_ContractCategoryCode_excel.xlsx",
+				"container": "memberrefdata"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Code ",
+				"type": "String"
+			},
+			{
+				"name": "Description",
+				"type": "String"
+			}
+		]
+	}
+}
