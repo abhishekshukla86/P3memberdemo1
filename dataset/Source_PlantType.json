@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "SRC_BenefitPlantype.csv",
+				"fileName": "SRC_PlanBenefits.csv",
 				"container": "memberrefdata"
 			},
 			"columnDelimiter": ",",
