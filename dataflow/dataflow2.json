@@ -14,6 +14,10 @@
 			],
 			"sinks": [
 				{
+					"dataset": {
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					},
 					"name": "sink1"
 				},
 				{
@@ -29,7 +33,7 @@
 					"name": "ConditionalSplit1"
 				}
 			],
-			"script": "source(output(\n\t\t{Code } as integer,\n\t\tDescription as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 split(isNull({Code }),\n\tdisjoint: false) ~> ConditionalSplit1@(stream1, stream2)\nConditionalSplit1@stream1 sink(mapColumn(\n\t\t{Code },\n\t\tDescription\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\tstore: 'cache',\n\tformat: 'inline',\n\tsaveOrder: 1) ~> sink1\nConditionalSplit1@stream2 sink(input(\n\t\tContract_Category_Code as string,\n\t\tContract_Category_Code_Desc as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tmapColumn(\n\t\tContract_Category_Code = {Code },\n\t\tContract_Category_Code_Desc = Description\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> sink2"
+			"script": "source(output(\n\t\t{Code } as integer,\n\t\tDescription as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 split(isNull({Code }),\n\tdisjoint: false) ~> ConditionalSplit1@(stream1, stream2)\nConditionalSplit1@stream1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\trecreate:true,\n\tformat: 'table',\n\tmapColumn(\n\t\t{Code },\n\t\tDescription\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\tsaveOrder: 1,\n\terrorHandlingOption: 'stopOnFirstError') ~> sink1\nConditionalSplit1@stream2 sink(input(\n\t\tContract_Category_Code as string,\n\t\tContract_Category_Code_Desc as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tmapColumn(\n\t\tContract_Category_Code = {Code },\n\t\tContract_Category_Code_Desc = Description\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> sink2"
 		}
 	}
 }
