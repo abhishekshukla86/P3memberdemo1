@@ -27,6 +27,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Sink_StagingDB'"
 		},
+		"Staging_P3_DB_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Staging_P3_DB'"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -68,6 +72,9 @@
 					},
 					"Sink_StagingDB_connectionString": {
 						"value": "[parameters('Sink_StagingDB_connectionString')]"
+					},
+					"Staging_P3_DB_connectionString": {
+						"value": "[parameters('Staging_P3_DB_connectionString')]"
 					}
 				}
 			},

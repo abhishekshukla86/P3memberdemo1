@@ -26,6 +26,10 @@
 		"Sink_StagingDB_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Sink_StagingDB'"
+		},
+		"Staging_P3_DB_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Staging_P3_DB'"
 		}
 	},
 	"variables": {
@@ -109,7 +113,20 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Source_Lineofbusinesscatcode')]",
+			"name": "[concat(parameters('factoryName'), '/Staging_P3_DB')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('Staging_P3_DB_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Source_REF_LineOfBusCatCode')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -146,12 +163,12 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Sink_LineOfBusCatCode')]",
+			"name": "[concat(parameters('factoryName'), '/Sink_REF_LineofBusCatCode')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "Sink_StagingDB",
+					"referenceName": "Staging_P3_DB",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -172,387 +189,17 @@
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Sink_StagingDB')]"
+				"[concat(variables('factoryId'), '/linkedServices/Staging_P3_DB')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Source_LineOfBusSubCAtCode')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "MemberSourceBlob",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "SRC_LineOfBusinessSubCategoryCode.csv",
-						"container": "memberrefdata"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "Code",
-						"type": "String"
-					},
-					{
-						"name": "Description",
-						"type": "String"
-					},
-					{
-						"name": "LOBCategory",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/MemberSourceBlob')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Sink_LineOfBusSubCatCode')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Sink_StagingDB",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Line_Of_Business_Sub_Category_Code",
-						"type": "varchar"
-					},
-					{
-						"name": "Line_Of_Business_Sub_Category_Code_Desc",
-						"type": "varchar"
-					},
-					{
-						"name": "Line_Of_Business_Category_Code",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "REF_LineOfBusinessSubCategoryCode"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Sink_StagingDB')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Souce_PopulationCatCode')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "MemberSourceBlob",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "SRC_PopulationCategoryCodes.csv",
-						"container": "memberrefdata"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "Code",
-						"type": "String"
-					},
-					{
-						"name": "Description",
-						"type": "String"
-					},
-					{
-						"name": "LOB Sub-Category",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/MemberSourceBlob')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Sink_PopulationCatCode')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Sink_StagingDB",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Population_Category_Code",
-						"type": "varchar"
-					},
-					{
-						"name": "Population_Category_Code_Desc",
-						"type": "varchar"
-					},
-					{
-						"name": "Line_Of_Business_Sub_Category_Code",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "REF_PopulationCategoryCode"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Sink_StagingDB')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Source_ContractCatCode')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "MemberSourceBlob",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "SRC_ContractCategoryCode.csv",
-						"container": "memberrefdata"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "Code ",
-						"type": "String"
-					},
-					{
-						"name": "Description",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/MemberSourceBlob')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Sink_ContractCatCode')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Sink_StagingDB",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Contract_Category_Code",
-						"type": "varchar"
-					},
-					{
-						"name": "Contract_Category_Code_Desc",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "REF_ContractCategoryCode"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Sink_StagingDB')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Source_BenefitPlanType')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "MemberSourceBlob",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "SRC_BenefitPlantype.csv",
-						"container": "memberrefdata"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "Code",
-						"type": "String"
-					},
-					{
-						"name": "Description",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/MemberSourceBlob')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Sink_BenefitPlanType')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Sink_StagingDB",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Benefit_Plan_type_code",
-						"type": "varchar"
-					},
-					{
-						"name": "Benefit_Plan_type_Desc",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "REF_BenefitPlantype"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Sink_StagingDB')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Source_RefData_excel')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "MemberSourceBlob",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "Sheet1",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "SRC_ReferenceData.xlsx",
-						"container": "memberrefdata"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "Table",
-						"type": "String"
-					},
-					{
-						"name": "Field",
-						"type": "String"
-					},
-					{
-						"name": "Reference_Code",
-						"type": "String"
-					},
-					{
-						"name": "Reference_Code_Value",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/MemberSourceBlob')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Sink_RefData')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Sink_StagingDB",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Ref_Data_ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Ref_Table",
-						"type": "varchar"
-					},
-					{
-						"name": "Ref_Field",
-						"type": "varchar"
-					},
-					{
-						"name": "Reference_Code",
-						"type": "varchar"
-					},
-					{
-						"name": "Reference_Code_Description",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "REF_Data"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Sink_StagingDB')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Reference Data')]",
+			"name": "[concat(parameters('factoryName'), '/P3Member')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"activities": [
 					{
-						"name": "REF_LineOfBusinessCategoryCode",
+						"name": "Copy data1",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -616,370 +263,14 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "Source_Lineofbusinesscatcode",
+								"referenceName": "Source_REF_LineOfBusCatCode",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						],
 						"outputs": [
 							{
-								"referenceName": "Sink_LineOfBusCatCode",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "REF_LineOfBusinessSubCategoryCode",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "REF_LineOfBusinessCategoryCode",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "Code",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Line_Of_Business_Sub_Category_Code",
-											"type": "String",
-											"physicalType": "varchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Description",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Line_Of_Business_Sub_Category_Code_Desc",
-											"type": "String",
-											"physicalType": "varchar"
-										}
-									},
-									{
-										"source": {
-											"name": "LOBCategory",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Line_Of_Business_Category_Code",
-											"type": "String",
-											"physicalType": "varchar"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "Source_LineOfBusSubCAtCode",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "Sink_LineOfBusSubCatCode",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "REF_PopulationCategoryCode",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "REF_LineOfBusinessSubCategoryCode",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "Souce_PopulationCatCode",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "Sink_PopulationCatCode",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "REF_ContractCategoryCode",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "REF_PopulationCategoryCode",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "Code ",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Contract_Category_Code",
-											"type": "String",
-											"physicalType": "varchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Description",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Contract_Category_Code_Desc",
-											"type": "String",
-											"physicalType": "varchar"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "Source_ContractCatCode",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "Sink_ContractCatCode",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "REF_BenefitPlanType",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "REF_ContractCategoryCode",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "Source_BenefitPlanType",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "Sink_BenefitPlanType",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Ref_Data",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "REF_BenefitPlanType",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "ExcelSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "Source_RefData_excel",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "Sink_RefData",
+								"referenceName": "Sink_REF_LineofBusCatCode",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -989,18 +280,8 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/Source_Lineofbusinesscatcode')]",
-				"[concat(variables('factoryId'), '/datasets/Sink_LineOfBusCatCode')]",
-				"[concat(variables('factoryId'), '/datasets/Source_LineOfBusSubCAtCode')]",
-				"[concat(variables('factoryId'), '/datasets/Sink_LineOfBusSubCatCode')]",
-				"[concat(variables('factoryId'), '/datasets/Souce_PopulationCatCode')]",
-				"[concat(variables('factoryId'), '/datasets/Sink_PopulationCatCode')]",
-				"[concat(variables('factoryId'), '/datasets/Source_ContractCatCode')]",
-				"[concat(variables('factoryId'), '/datasets/Sink_ContractCatCode')]",
-				"[concat(variables('factoryId'), '/datasets/Source_BenefitPlanType')]",
-				"[concat(variables('factoryId'), '/datasets/Sink_BenefitPlanType')]",
-				"[concat(variables('factoryId'), '/datasets/Source_RefData_excel')]",
-				"[concat(variables('factoryId'), '/datasets/Sink_RefData')]"
+				"[concat(variables('factoryId'), '/datasets/Source_REF_LineOfBusCatCode')]",
+				"[concat(variables('factoryId'), '/datasets/Sink_REF_LineofBusCatCode')]"
 			]
 		}
 	]
