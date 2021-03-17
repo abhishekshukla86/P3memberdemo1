@@ -5,19 +5,19 @@
 		"factoryName": {
 			"value": "abDataFactory1"
 		},
+		"MemberSourceBlob_connectionString": {
+			"value": ""
+		},
 		"REF_Data_P3MemberCSV_connectionString": {
 			"value": ""
 		},
 		"STGDBMemberP3_connectionString": {
 			"value": ""
 		},
-		"StagingDB_connectionString": {
-			"value": ""
-		},
-		"MemberSourceBlob_connectionString": {
-			"value": ""
-		},
 		"Sink_StagingDB_connectionString": {
+			"value": ""
+		},
+		"StagingDB_connectionString": {
 			"value": ""
 		},
 		"Staging_P3_DB_connectionString": {

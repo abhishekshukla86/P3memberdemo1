@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "abDataFactory1"
 		},
+		"MemberSourceBlob_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'MemberSourceBlob'"
+		},
 		"REF_Data_P3MemberCSV_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'REF_Data_P3MemberCSV'"
@@ -15,17 +19,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'STGDBMemberP3'"
 		},
-		"StagingDB_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'StagingDB'"
-		},
-		"MemberSourceBlob_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'MemberSourceBlob'"
-		},
 		"Sink_StagingDB_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Sink_StagingDB'"
+		},
+		"StagingDB_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'StagingDB'"
 		},
 		"Staging_P3_DB_connectionString": {
 			"type": "secureString",
@@ -58,20 +58,20 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"MemberSourceBlob_connectionString": {
+						"value": "[parameters('MemberSourceBlob_connectionString')]"
+					},
 					"REF_Data_P3MemberCSV_connectionString": {
 						"value": "[parameters('REF_Data_P3MemberCSV_connectionString')]"
 					},
 					"STGDBMemberP3_connectionString": {
 						"value": "[parameters('STGDBMemberP3_connectionString')]"
 					},
-					"StagingDB_connectionString": {
-						"value": "[parameters('StagingDB_connectionString')]"
-					},
-					"MemberSourceBlob_connectionString": {
-						"value": "[parameters('MemberSourceBlob_connectionString')]"
-					},
 					"Sink_StagingDB_connectionString": {
 						"value": "[parameters('Sink_StagingDB_connectionString')]"
+					},
+					"StagingDB_connectionString": {
+						"value": "[parameters('StagingDB_connectionString')]"
 					},
 					"Staging_P3_DB_connectionString": {
 						"value": "[parameters('Staging_P3_DB_connectionString')]"
@@ -79,6 +79,26 @@
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "abDataFactory1_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'abDataFactory1_ArmTemplate_0')]"
+			]
 		}
 	]
 }
