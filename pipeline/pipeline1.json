@@ -260,25 +260,6 @@
 						"type": "DatasetReference"
 					}
 				]
-			},
-			{
-				"name": "If Condition1",
-				"type": "IfCondition",
-				"dependsOn": [
-					{
-						"activity": "ContractCat",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"expression": {
-						"value": "@activity('ContractCat').output.value",
-						"type": "Expression"
-					}
-				}
 			}
 		],
 		"annotations": []
