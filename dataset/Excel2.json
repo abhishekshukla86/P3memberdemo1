@@ -1,0 +1,54 @@
+{
+	"name": "Excel2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MemberSourceBlob",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "SRC_PlanBenefits",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "SRC_PlanBenefits_excel.xlsx",
+				"container": "memberrefdata"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Plan_Benefit_ID",
+				"type": "String"
+			},
+			{
+				"name": "Plan_Benefit_Start_Date",
+				"type": "String"
+			},
+			{
+				"name": "Plan_Benefit_End_Date",
+				"type": "String"
+			},
+			{
+				"name": "Plan_Benefit_Description",
+				"type": "String"
+			},
+			{
+				"name": "Line_Of_Business                  ",
+				"type": "String"
+			},
+			{
+				"name": "Plan_Product_Code                 ",
+				"type": "String"
+			},
+			{
+				"name": "Benefit_Plan_Type_Code",
+				"type": "String"
+			},
+			{
+				"name": "Population_Category_Code",
+				"type": "String"
+			}
+		]
+	}
+}
