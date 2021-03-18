@@ -1,0 +1,20 @@
+{
+	"name": "dataflow6",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "sourceplanbenefits",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"script": "source(output(\n\t\tPlan_Benefit_ID as string,\n\t\tPlan_Benefit_Start_Date as string,\n\t\tPlan_Benefit_End_Date as string,\n\t\tPlan_Benefit_Description as string,\n\t\t{Line_Of_Business                  } as integer,\n\t\t{Plan_Product_Code                 } as string,\n\t\tBenefit_Plan_Type_Code as integer,\n\t\tPopulation_Category_Code as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1"
+		}
+	}
+}
