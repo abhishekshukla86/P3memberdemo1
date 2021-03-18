@@ -13,8 +13,12 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
-			"script": "source(output(\n\t\tPlan_Benefit_ID as string,\n\t\tPlan_Benefit_Start_Date as string,\n\t\tPlan_Benefit_End_Date as string,\n\t\tPlan_Benefit_Description as string,\n\t\t{Line_Of_Business                  } as integer,\n\t\t{Plan_Product_Code                 } as string,\n\t\tBenefit_Plan_Type_Code as integer,\n\t\tPopulation_Category_Code as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1"
+			"transformations": [
+				{
+					"name": "DerivedColumn1"
+				}
+			],
+			"script": "source(output(\n\t\tPlan_Benefit_ID as string,\n\t\tPlan_Benefit_Start_Date as string,\n\t\tPlan_Benefit_End_Date as string,\n\t\tPlan_Benefit_Description as string,\n\t\t{Line_Of_Business                  } as integer,\n\t\t{Plan_Product_Code                 } as string,\n\t\tBenefit_Plan_Type_Code as integer,\n\t\tPopulation_Category_Code as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 derive(Plan_Benefit_Start_Date = toDate(Plan_Benefit_Start_Date,'yyyy/MM/dd'),\n\t\tPlan_Benefit_End_Date = toDate(Plan_Benefit_End_Date,'yyyy/MM/dd')) ~> DerivedColumn1"
 		}
 	}
 }
