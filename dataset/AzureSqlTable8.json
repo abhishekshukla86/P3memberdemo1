@@ -1,0 +1,42 @@
+{
+	"name": "AzureSqlTable8",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Staging_P3_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Enrollment_Contract_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Contract_Number",
+				"type": "varchar"
+			},
+			{
+				"name": "Contract_Desc",
+				"type": "varchar"
+			},
+			{
+				"name": "Contract_Category_Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Line_Of_Business_Category_Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Line_Of_Business_Sub_Category_Code",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Enrollment_contract"
+		}
+	}
+}

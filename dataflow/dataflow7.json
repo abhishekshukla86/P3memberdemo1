@@ -12,13 +12,21 @@
 					"name": "source1"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable8",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "DerivedColumn1"
 				}
 			],
-			"script": "source(output(\n\t\tEnrollment_Contract_ID as string,\n\t\tContract_Number as string,\n\t\tContract_Desc as string,\n\t\tContract_Category_Code as string,\n\t\tLine_Of_Business_Category_Code as string,\n\t\tLine_Of_Business_Sub_Category_Code as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 derive(Line_Of_Business_Category_Code = ERROR_FUNCTION(''),\n\t\tLine_Of_Business_Sub_Category_Code = ERROR_FUNCTION('')) ~> DerivedColumn1"
+			"script": "source(output(\n\t\tEnrollment_Contract_ID as string,\n\t\tContract_Number as string,\n\t\tContract_Desc as string,\n\t\tContract_Category_Code as string,\n\t\tLine_Of_Business_Category_Code as string,\n\t\tLine_Of_Business_Sub_Category_Code as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 derive(Line_Of_Business_Category_Code = lpad(Line_Of_Business_Category_Code, 2, \"0\"),\n\t\tLine_Of_Business_Sub_Category_Code = lpad(Line_Of_Business_Sub_Category_Code, 2, \"0\")) ~> DerivedColumn1\nDerivedColumn1 sink(input(\n\t\tEnrollment_Contract_ID as integer,\n\t\tContract_Number as string,\n\t\tContract_Desc as string,\n\t\tContract_Category_Code as string,\n\t\tLine_Of_Business_Category_Code as string,\n\t\tLine_Of_Business_Sub_Category_Code as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tmapColumn(\n\t\tEnrollment_Contract_ID,\n\t\tContract_Number,\n\t\tContract_Desc,\n\t\tContract_Category_Code,\n\t\tLine_Of_Business_Category_Code,\n\t\tLine_Of_Business_Sub_Category_Code\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> sink1"
 		}
 	}
 }
