@@ -1,0 +1,49 @@
+{
+	"name": "AzureSqlTable5",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Staging_P3_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Plan_Benefit_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "Plan_Benefit_Start_Date",
+				"type": "date"
+			},
+			{
+				"name": "Plan_Benefit_End_Date",
+				"type": "date"
+			},
+			{
+				"name": "Plan_Benefit_Description",
+				"type": "varchar"
+			},
+			{
+				"name": "Line_Of_Business",
+				"type": "varchar"
+			},
+			{
+				"name": "Plan_Product_Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Benefit_Plan_Type_Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Population_Category_Code",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Plan_Benefits"
+		}
+	}
+}
