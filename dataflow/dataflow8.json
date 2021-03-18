@@ -12,9 +12,17 @@
 					"name": "source1"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable9",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [],
-			"script": "source(output(\n\t\t{Enrollment_Benefit_Plan_ID } as string,\n\t\tEnrollment_Contract_ID as string,\n\t\tPlan_ID as string,\n\t\tPlan_Benefit_ID as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1"
+			"script": "source(output(\n\t\t{Enrollment_Benefit_Plan_ID } as string,\n\t\tEnrollment_Contract_ID as string,\n\t\tPlan_ID as string,\n\t\tPlan_Benefit_ID as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 sink(input(\n\t\tEnrollment_Benefit_Plan_ID as integer,\n\t\tEnrollment_Contract_ID as integer,\n\t\tPlan_ID as string,\n\t\tPlan_Benefit_ID as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tmapColumn(\n\t\tEnrollment_Benefit_Plan_ID = {Enrollment_Benefit_Plan_ID },\n\t\tEnrollment_Contract_ID,\n\t\tPlan_ID,\n\t\tPlan_Benefit_ID\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> sink1"
 		}
 	}
 }
