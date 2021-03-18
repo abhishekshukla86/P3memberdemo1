@@ -1,0 +1,16 @@
+{
+	"name": "Sink_STG_Plan_Benefits",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Staging_P3_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Plan_Benefits"
+		}
+	}
+}
