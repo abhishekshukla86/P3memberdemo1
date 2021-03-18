@@ -24,6 +24,10 @@
 				"type": "String"
 			},
 			{
+				"name": "FULL_NAME",
+				"type": "String"
+			},
+			{
 				"name": "FIRST_NAME",
 				"type": "String"
 			},
