@@ -1,0 +1,69 @@
+{
+	"name": "Sink_PlanCode",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Staging_P3_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Plan_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "Plan_Start_Date",
+				"type": "date"
+			},
+			{
+				"name": "Plan_End_Date",
+				"type": "date"
+			},
+			{
+				"name": "Plan_Name_Description",
+				"type": "varchar"
+			},
+			{
+				"name": "Line_Of_Business",
+				"type": "varchar"
+			},
+			{
+				"name": "Plan_Product_Code",
+				"type": "varchar"
+			},
+			{
+				"name": "market_Type",
+				"type": "varchar"
+			},
+			{
+				"name": "Grandfathered_Plan_Flag",
+				"type": "char"
+			},
+			{
+				"name": "Metal_level",
+				"type": "varchar"
+			},
+			{
+				"name": "Acturial_Value",
+				"type": "varchar"
+			},
+			{
+				"name": "Issuer_State",
+				"type": "varchar"
+			},
+			{
+				"name": "Issuer_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "Plan_On_Off_Exchange_Indicator",
+				"type": "char"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Plann"
+		}
+	}
+}
