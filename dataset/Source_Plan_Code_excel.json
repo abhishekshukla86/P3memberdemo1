@@ -1,0 +1,74 @@
+{
+	"name": "Source_Plan_Code_excel",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MemberSourceBlob",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "SRC_PlanCode",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "SRC_PlanCode_xlx.xlsx",
+				"container": "memberrefdata"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Plan_ID                             ",
+				"type": "String"
+			},
+			{
+				"name": "Plan_Start_Date",
+				"type": "String"
+			},
+			{
+				"name": "Plan_End_Date",
+				"type": "String"
+			},
+			{
+				"name": "Plan_Name_Description            ",
+				"type": "String"
+			},
+			{
+				"name": "Line_Of_Business                  ",
+				"type": "String"
+			},
+			{
+				"name": "Plan_Product_Code                 ",
+				"type": "String"
+			},
+			{
+				"name": "market_Type                       ",
+				"type": "String"
+			},
+			{
+				"name": "Grandfathered_Plan_Flag              ",
+				"type": "String"
+			},
+			{
+				"name": "Metal_level                        ",
+				"type": "String"
+			},
+			{
+				"name": "Acturial_Value ",
+				"type": "String"
+			},
+			{
+				"name": "Issuer_State",
+				"type": "String"
+			},
+			{
+				"name": "Issuer_ID",
+				"type": "String"
+			},
+			{
+				"name": "Plan_On_Off_Exchange_Indicator",
+				"type": "String"
+			}
+		]
+	}
+}
