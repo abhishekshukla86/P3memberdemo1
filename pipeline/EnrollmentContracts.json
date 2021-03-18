@@ -3,8 +3,8 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "EnrollmentContracts",
-				"type": "Copy",
+				"name": "Data flow1",
+				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -15,116 +15,16 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"source": {
-						"type": "DelimitedTextSource",
-						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
-						},
-						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
-						}
+					"dataflow": {
+						"referenceName": "dataflow7",
+						"type": "DataFlowReference"
 					},
-					"sink": {
-						"type": "AzureSqlSink"
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
 					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"name": "Enrollment_Contract_ID",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "Enrollment_Contract_ID",
-									"type": "Int32",
-									"physicalType": "int"
-								}
-							},
-							{
-								"source": {
-									"name": "Contract_Number",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "Contract_Number",
-									"type": "String",
-									"physicalType": "varchar"
-								}
-							},
-							{
-								"source": {
-									"name": "Contract_Desc",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "Contract_Desc",
-									"type": "String",
-									"physicalType": "varchar"
-								}
-							},
-							{
-								"source": {
-									"name": "Contract_Category_Code",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "Contract_Category_Code",
-									"type": "String",
-									"physicalType": "varchar"
-								}
-							},
-							{
-								"source": {
-									"name": "Line_Of_Business_Category_Code",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "Line_Of_Business_Category_Code",
-									"type": "String",
-									"physicalType": "varchar"
-								}
-							},
-							{
-								"source": {
-									"name": "Line_Of_Business_Sub_Category_Code",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "Line_Of_Business_Sub_Category_Code",
-									"type": "String",
-									"physicalType": "varchar"
-								}
-							}
-						],
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "DelimitedText1",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "AzureSqlTable7",
-						"type": "DatasetReference"
-					}
-				]
+					"traceLevel": "Fine"
+				}
 			}
 		],
 		"annotations": []
