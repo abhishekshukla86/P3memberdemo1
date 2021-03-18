@@ -1,0 +1,24 @@
+{
+	"name": "dataflow7",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Excel3",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "DerivedColumn1"
+				}
+			],
+			"script": "source(output(\n\t\tEnrollment_Contract_ID as string,\n\t\tContract_Number as string,\n\t\tContract_Desc as string,\n\t\tContract_Category_Code as string,\n\t\tLine_Of_Business_Category_Code as string,\n\t\tLine_Of_Business_Sub_Category_Code as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 derive(Line_Of_Business_Category_Code = ERROR_FUNCTION(''),\n\t\tLine_Of_Business_Sub_Category_Code = ERROR_FUNCTION('')) ~> DerivedColumn1"
+		}
+	}
+}
