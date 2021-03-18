@@ -1,0 +1,48 @@
+{
+	"name": "DelimitedText1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MemberSourceBlob",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "SRC_Enrollnment_contract.csv",
+				"container": "memberrefdata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Enrollment_Contract_ID",
+				"type": "String"
+			},
+			{
+				"name": "Contract_Number",
+				"type": "String"
+			},
+			{
+				"name": "Contract_Desc",
+				"type": "String"
+			},
+			{
+				"name": "Contract_Category_Code",
+				"type": "String"
+			},
+			{
+				"name": "Line_Of_Business_Category_Code",
+				"type": "String"
+			},
+			{
+				"name": "Line_Of_Business_Sub_Category_Code",
+				"type": "String"
+			}
+		]
+	}
+}
