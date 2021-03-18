@@ -720,299 +720,172 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/REF_LineOfBusSubCatCode')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
+			"name": "[concat(parameters('factoryName'), '/sourceplanbenefits')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"activities": [
+				"linkedServiceName": {
+					"referenceName": "MemberSourceBlob",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "SRC_PlanBenefits.csv",
+						"container": "memberrefdata"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
 					{
-						"name": "REF_LineOfBusSubCatCode",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "Code",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Line_Of_Business_Sub_Category_Code",
-											"type": "String",
-											"physicalType": "varchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Description",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Line_Of_Business_Sub_Category_Code_Desc",
-											"type": "String",
-											"physicalType": "varchar"
-										}
-									},
-									{
-										"source": {
-											"name": "LOBCategory",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Line_Of_Business_Category_Code",
-											"type": "String",
-											"physicalType": "varchar"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "Source_LineOfBusSubCatCode",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "Sink_LineOfBusSubCatCode",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
+						"name": "Plan_Benefit_ID",
+						"type": "String"
+					},
+					{
+						"name": "Plan_Benefit_Start_Date",
+						"type": "String"
+					},
+					{
+						"name": "Plan_Benefit_End_Date",
+						"type": "String"
+					},
+					{
+						"name": "Plan_Benefit_Description",
+						"type": "String"
+					},
+					{
+						"name": "Line_Of_Business                  ",
+						"type": "String"
+					},
+					{
+						"name": "Plan_Product_Code                 ",
+						"type": "String"
+					},
+					{
+						"name": "Benefit_Plan_Type_Code",
+						"type": "String"
+					},
+					{
+						"name": "Population_Category_Code",
+						"type": "String"
 					}
-				],
-				"annotations": []
+				]
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/REF_PopulationCatCode')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
+			"name": "[concat(parameters('factoryName'), '/Excel2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"activities": [
+				"linkedServiceName": {
+					"referenceName": "MemberSourceBlob",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "SRC_PlanBenefits",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "SRC_PlanBenefits_excel.xlsx",
+						"container": "memberrefdata"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
 					{
-						"name": "REF_PopulationCatCode",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "Code",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Population_Category_Code",
-											"type": "String",
-											"physicalType": "varchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Description",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Population_Category_Code_Desc",
-											"type": "String",
-											"physicalType": "varchar"
-										}
-									},
-									{
-										"source": {
-											"name": "LOB Sub-Category",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Line_Of_Business_Sub_Category_Code",
-											"type": "String",
-											"physicalType": "varchar"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "Source_REF_PopulationCatCode",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "SInk_PopulationCatCode",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
+						"name": "Plan_Benefit_ID",
+						"type": "String"
+					},
+					{
+						"name": "Plan_Benefit_Start_Date",
+						"type": "String"
+					},
+					{
+						"name": "Plan_Benefit_End_Date",
+						"type": "String"
+					},
+					{
+						"name": "Plan_Benefit_Description",
+						"type": "String"
+					},
+					{
+						"name": "Line_Of_Business                  ",
+						"type": "String"
+					},
+					{
+						"name": "Plan_Product_Code                 ",
+						"type": "String"
+					},
+					{
+						"name": "Benefit_Plan_Type_Code",
+						"type": "String"
+					},
+					{
+						"name": "Population_Category_Code",
+						"type": "String"
 					}
-				],
-				"annotations": []
+				]
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/Source_REF_PopulationCatCode')]"
-			]
+			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable6')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"activities": [
+				"linkedServiceName": {
+					"referenceName": "Staging_P3_DB",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
 					{
-						"name": "BenefitPlantype",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "Code",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Benefit_Plan_type_code",
-											"type": "String",
-											"physicalType": "varchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Description",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Benefit_Plan_type_Desc",
-											"type": "String",
-											"physicalType": "varchar"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "Source_PlantType",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "Sink_BenefitPlan",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
+						"name": "Plan_Benefit_ID",
+						"type": "varchar"
+					},
+					{
+						"name": "Plan_Benefit_Start_Date",
+						"type": "date"
+					},
+					{
+						"name": "Plan_Benefit_End_Date",
+						"type": "date"
+					},
+					{
+						"name": "Plan_Benefit_Description",
+						"type": "varchar"
+					},
+					{
+						"name": "Line_Of_Business",
+						"type": "varchar"
+					},
+					{
+						"name": "Plan_Product_Code",
+						"type": "varchar"
+					},
+					{
+						"name": "Benefit_Plan_Type_Code",
+						"type": "varchar"
+					},
+					{
+						"name": "Population_Category_Code",
+						"type": "varchar"
 					}
 				],
-				"annotations": []
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Plan_Benefits"
+				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/Source_PlantType')]"
-			]
+			"dependsOn": []
 		}
 	]
 }

@@ -13,6 +13,297 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/REF_LineOfBusSubCatCode')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "REF_LineOfBusSubCatCode",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "Code",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Line_Of_Business_Sub_Category_Code",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Description",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Line_Of_Business_Sub_Category_Code_Desc",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "LOBCategory",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Line_Of_Business_Category_Code",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Source_LineOfBusSubCatCode",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Sink_LineOfBusSubCatCode",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/REF_PopulationCatCode')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "REF_PopulationCatCode",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "Code",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Population_Category_Code",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Description",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Population_Category_Code_Desc",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "LOB Sub-Category",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Line_Of_Business_Sub_Category_Code",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Source_REF_PopulationCatCode",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SInk_PopulationCatCode",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "BenefitPlantype",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "Code",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Benefit_Plan_type_code",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Description",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Benefit_Plan_type_Desc",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Source_PlantType",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Sink_BenefitPlan",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/dataflow2')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
@@ -231,13 +522,6 @@
 								"type": "DatasetReference"
 							},
 							"name": "source1"
-						},
-						{
-							"dataset": {
-								"referenceName": "Source_benefit_plan_excel",
-								"type": "DatasetReference"
-							},
-							"name": "source2"
 						}
 					],
 					"sinks": [
@@ -247,24 +531,49 @@
 								"type": "DatasetReference"
 							},
 							"name": "sink1"
-						},
-						{
-							"dataset": {
-								"referenceName": "AzureSqlTable5",
-								"type": "DatasetReference"
-							},
-							"name": "sink2"
 						}
 					],
 					"transformations": [
 						{
 							"name": "StringtoDate"
-						},
-						{
-							"name": "PlanbenefitsStringtoDate"
 						}
 					],
-					"script": "source(output(\n\t\t{Plan_ID                             } as string,\n\t\tPlan_Start_Date as string,\n\t\tPlan_End_Date as string,\n\t\t{Plan_Name_Description            } as string,\n\t\t{Line_Of_Business                  } as integer,\n\t\t{Plan_Product_Code                 } as string,\n\t\t{market_Type                       } as string,\n\t\t{Grandfathered_Plan_Flag              } as string,\n\t\t{Metal_level                        } as integer,\n\t\t{Acturial_Value } as integer,\n\t\tIssuer_State as string,\n\t\tIssuer_ID as string,\n\t\tPlan_On_Off_Exchange_Indicator as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tinferDriftedColumnTypes: true) ~> source1\nsource(output(\n\t\tPlan_Benefit_ID as string,\n\t\tPlan_Benefit_Start_Date as string,\n\t\tPlan_Benefit_End_Date as string,\n\t\tPlan_Benefit_Description as string,\n\t\t{Line_Of_Business                  } as integer,\n\t\t{Plan_Product_Code                 } as string,\n\t\tBenefit_Plan_Type_Code as integer,\n\t\tPopulation_Category_Code as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source2\nsource1 derive(Plan_Start_Date = toDate(Plan_Start_Date),\n\t\tPlan_End_Date = toDate(Plan_End_Date)) ~> StringtoDate\nsource2 derive(Plan_Benefit_Start_Date = toDate(Plan_Benefit_Start_Date),\n\t\tPlan_Benefit_End_Date = toDate(Plan_Benefit_End_Date)) ~> PlanbenefitsStringtoDate\nStringtoDate sink(input(\n\t\tPlan_ID as string,\n\t\tPlan_Start_Date as date,\n\t\tPlan_End_Date as date,\n\t\tPlan_Name_Description as string,\n\t\tLine_Of_Business as string,\n\t\tPlan_Product_Code as string,\n\t\tmarket_Type as string,\n\t\tGrandfathered_Plan_Flag as string,\n\t\tMetal_level as string,\n\t\tActurial_Value as string,\n\t\tIssuer_State as string,\n\t\tIssuer_ID as string,\n\t\tPlan_On_Off_Exchange_Indicator as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tmapColumn(\n\t\tPlan_ID = {Plan_ID                             },\n\t\tPlan_Start_Date,\n\t\tPlan_End_Date,\n\t\tPlan_Name_Description = {Plan_Name_Description            },\n\t\tLine_Of_Business = {Line_Of_Business                  },\n\t\tPlan_Product_Code = {Plan_Product_Code                 },\n\t\tmarket_Type = {market_Type                       },\n\t\tGrandfathered_Plan_Flag = {Grandfathered_Plan_Flag              },\n\t\tMetal_level = {Metal_level                        },\n\t\tActurial_Value = {Acturial_Value },\n\t\tIssuer_State,\n\t\tIssuer_ID,\n\t\tPlan_On_Off_Exchange_Indicator\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> sink1\nPlanbenefitsStringtoDate sink(input(\n\t\tPlan_Benefit_ID as string,\n\t\tPlan_Benefit_Start_Date as date,\n\t\tPlan_Benefit_End_Date as date,\n\t\tPlan_Benefit_Description as string,\n\t\tLine_Of_Business as string,\n\t\tPlan_Product_Code as string,\n\t\tBenefit_Plan_Type_Code as string,\n\t\tPopulation_Category_Code as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tmapColumn(\n\t\tPlan_Benefit_ID,\n\t\tPlan_Benefit_Start_Date,\n\t\tPlan_Benefit_End_Date,\n\t\tPlan_Benefit_Description,\n\t\tLine_Of_Business = {Line_Of_Business                  },\n\t\tPlan_Product_Code = {Plan_Product_Code                 },\n\t\tBenefit_Plan_Type_Code,\n\t\tPopulation_Category_Code\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> sink2"
+					"script": "source(output(\n\t\t{Plan_ID                             } as string,\n\t\tPlan_Start_Date as string,\n\t\tPlan_End_Date as string,\n\t\t{Plan_Name_Description            } as string,\n\t\t{Line_Of_Business                  } as integer,\n\t\t{Plan_Product_Code                 } as string,\n\t\t{market_Type                       } as string,\n\t\t{Grandfathered_Plan_Flag              } as string,\n\t\t{Metal_level                        } as integer,\n\t\t{Acturial_Value } as integer,\n\t\tIssuer_State as string,\n\t\tIssuer_ID as string,\n\t\tPlan_On_Off_Exchange_Indicator as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tinferDriftedColumnTypes: true) ~> source1\nsource1 derive(Plan_Start_Date = toDate(Plan_Start_Date),\n\t\tPlan_End_Date = toDate(Plan_End_Date)) ~> StringtoDate\nStringtoDate sink(input(\n\t\tPlan_ID as string,\n\t\tPlan_Start_Date as date,\n\t\tPlan_End_Date as date,\n\t\tPlan_Name_Description as string,\n\t\tLine_Of_Business as string,\n\t\tPlan_Product_Code as string,\n\t\tmarket_Type as string,\n\t\tGrandfathered_Plan_Flag as string,\n\t\tMetal_level as string,\n\t\tActurial_Value as string,\n\t\tIssuer_State as string,\n\t\tIssuer_ID as string,\n\t\tPlan_On_Off_Exchange_Indicator as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tmapColumn(\n\t\tPlan_ID = {Plan_ID                             },\n\t\tPlan_Start_Date,\n\t\tPlan_End_Date,\n\t\tPlan_Name_Description = {Plan_Name_Description            },\n\t\tLine_Of_Business = {Line_Of_Business                  },\n\t\tPlan_Product_Code = {Plan_Product_Code                 },\n\t\tmarket_Type = {market_Type                       },\n\t\tGrandfathered_Plan_Flag = {Grandfathered_Plan_Flag              },\n\t\tMetal_level = {Metal_level                        },\n\t\tActurial_Value = {Acturial_Value },\n\t\tIssuer_State,\n\t\tIssuer_ID,\n\t\tPlan_On_Off_Exchange_Indicator\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> sink1"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dataflow6')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "Excel2",
+								"type": "DatasetReference"
+							},
+							"name": "source1"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "AzureSqlTable6",
+								"type": "DatasetReference"
+							},
+							"name": "sink1"
+						}
+					],
+					"transformations": [
+						{
+							"name": "DerivedColumn1"
+						}
+					],
+					"script": "source(output(\n\t\tPlan_Benefit_ID as string,\n\t\tPlan_Benefit_Start_Date as string,\n\t\tPlan_Benefit_End_Date as string,\n\t\tPlan_Benefit_Description as string,\n\t\t{Line_Of_Business                  } as integer,\n\t\t{Plan_Product_Code                 } as string,\n\t\tBenefit_Plan_Type_Code as integer,\n\t\tPopulation_Category_Code as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tinferDriftedColumnTypes: true) ~> source1\nsource1 derive(Plan_Benefit_Start_Date = toDate(Plan_Benefit_Start_Date),\n\t\tPlan_Benefit_End_Date = toDate(Plan_Benefit_End_Date)) ~> DerivedColumn1\nDerivedColumn1 sink(input(\n\t\tPlan_Benefit_ID as string,\n\t\tPlan_Benefit_Start_Date as date,\n\t\tPlan_Benefit_End_Date as date,\n\t\tPlan_Benefit_Description as string,\n\t\tLine_Of_Business as string,\n\t\tPlan_Product_Code as string,\n\t\tBenefit_Plan_Type_Code as string,\n\t\tPopulation_Category_Code as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tmapColumn(\n\t\tPlan_Benefit_ID,\n\t\tPlan_Benefit_Start_Date,\n\t\tPlan_Benefit_End_Date,\n\t\tPlan_Benefit_Description,\n\t\tLine_Of_Business = {Line_Of_Business                  },\n\t\tPlan_Product_Code = {Plan_Product_Code                 },\n\t\tBenefit_Plan_Type_Code,\n\t\tPopulation_Category_Code\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> sink1"
 				}
 			},
 			"dependsOn": []
@@ -381,9 +690,7 @@
 								"parameters": {},
 								"datasetParameters": {
 									"source1": {},
-									"source2": {},
-									"sink1": {},
-									"sink2": {}
+									"sink1": {}
 								}
 							},
 							"staging": {},
@@ -399,6 +706,49 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/dataflows/dataflow5')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Plan_benefits')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Data flow1",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "dataflow6",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source1": {},
+									"sink1": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/dataflow6')]"
 			]
 		}
 	]
