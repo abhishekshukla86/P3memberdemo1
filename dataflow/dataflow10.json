@@ -1,0 +1,27 @@
+{
+	"name": "dataflow10",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "SRCMemberEnrollment",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "Select1"
+				},
+				{
+					"name": "Aggregate1"
+				}
+			],
+			"script": "source(output(\n\t\tMEMBER_ID as string,\n\t\tSTART_DATE as string,\n\t\tEND_DATE as string,\n\t\tMEDICAL_BENEFIT as string,\n\t\tPAYER_CODE as string,\n\t\tPRODUCT_CODE as string,\n\t\tPCP_PROVIDERID as string,\n\t\tMENTALHEALTH_AMBULATORY as string,\n\t\tMENTALHEALTH_INPATIENT as string,\n\t\tMENTALHEALTH_DAYNIGHT as string,\n\t\tCHEMDEPEND_AMBULATORY as string,\n\t\tCHEMDEPEND_INPATIENT as string,\n\t\tCHEMDEPEND_DAYNIGHT as string,\n\t\tDRUG_BENEFIT as string,\n\t\tVISION_BENEFIT as string,\n\t\tDENTAL_BENEFIT as string,\n\t\tGROUP_ID as string,\n\t\tGROUP_NAME as string,\n\t\tOTHER_INSURANCE_FLAG as string,\n\t\tPRIMARY_INSURANCE_FLAG as string,\n\t\tPLANEMPLOYEEFLAG as string,\n\t\tMEDICARE_CONTRACT_NUMBER as string,\n\t\tAID_GROUP as string,\n\t\tCOBRA_FLAG as string,\n\t\tCOVERAGE_TIER as string,\n\t\tEMPLOYERCODE as string,\n\t\tEMPLOYERDESCRIPTION as string,\n\t\tMEMBERENROLLMENTCUSTOMCODE1 as string,\n\t\tMEMBERENROLLMENTCUSTOMCODE2 as string,\n\t\tMEMBERENROLLMENTCUSTOMCODE3 as string,\n\t\tMEMBERENROLLMENTCUSTOMCODE4 as string,\n\t\tMEMBERENROLLMENTCUSTOMCODE5 as string,\n\t\tMEMBERENROLLMENTCUSTOMCODE6 as string,\n\t\tMEDICARE_PLANID_NUMBER as string,\n\t\tSNP_ENROLLEE_TYPE as string,\n\t\tPCP_START_DATE as string,\n\t\tPCP_END_DATE as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 select(mapColumn(\n\t\tGROUP_ID,\n\t\tGROUP_NAME\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nSelect1 aggregate(groupBy(GROUP_ID),\n\teach(match(name != 'GROUP_ID'), $$ = last($$))) ~> Aggregate1"
+		}
+	}
+}
