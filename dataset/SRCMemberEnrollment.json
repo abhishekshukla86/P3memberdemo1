@@ -1,0 +1,172 @@
+{
+	"name": "SRCMemberEnrollment",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MemberSourceBlob",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "SRC_Member_Enrollment.csv",
+				"container": "memberrefdata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "MEMBER_ID",
+				"type": "String"
+			},
+			{
+				"name": "START_DATE",
+				"type": "String"
+			},
+			{
+				"name": "END_DATE",
+				"type": "String"
+			},
+			{
+				"name": "MEDICAL_BENEFIT",
+				"type": "String"
+			},
+			{
+				"name": "PAYER_CODE",
+				"type": "String"
+			},
+			{
+				"name": "PRODUCT_CODE",
+				"type": "String"
+			},
+			{
+				"name": "PCP_PROVIDERID",
+				"type": "String"
+			},
+			{
+				"name": "MENTALHEALTH_AMBULATORY",
+				"type": "String"
+			},
+			{
+				"name": "MENTALHEALTH_INPATIENT",
+				"type": "String"
+			},
+			{
+				"name": "MENTALHEALTH_DAYNIGHT",
+				"type": "String"
+			},
+			{
+				"name": "CHEMDEPEND_AMBULATORY",
+				"type": "String"
+			},
+			{
+				"name": "CHEMDEPEND_INPATIENT",
+				"type": "String"
+			},
+			{
+				"name": "CHEMDEPEND_DAYNIGHT",
+				"type": "String"
+			},
+			{
+				"name": "DRUG_BENEFIT",
+				"type": "String"
+			},
+			{
+				"name": "VISION_BENEFIT",
+				"type": "String"
+			},
+			{
+				"name": "DENTAL_BENEFIT",
+				"type": "String"
+			},
+			{
+				"name": "GROUP_ID",
+				"type": "String"
+			},
+			{
+				"name": "GROUP_NAME",
+				"type": "String"
+			},
+			{
+				"name": "OTHER_INSURANCE_FLAG",
+				"type": "String"
+			},
+			{
+				"name": "PRIMARY_INSURANCE_FLAG",
+				"type": "String"
+			},
+			{
+				"name": "PLANEMPLOYEEFLAG",
+				"type": "String"
+			},
+			{
+				"name": "MEDICARE_CONTRACT_NUMBER",
+				"type": "String"
+			},
+			{
+				"name": "AID_GROUP",
+				"type": "String"
+			},
+			{
+				"name": "COBRA_FLAG",
+				"type": "String"
+			},
+			{
+				"name": "COVERAGE_TIER",
+				"type": "String"
+			},
+			{
+				"name": "EMPLOYERCODE",
+				"type": "String"
+			},
+			{
+				"name": "EMPLOYERDESCRIPTION",
+				"type": "String"
+			},
+			{
+				"name": "MEMBERENROLLMENTCUSTOMCODE1",
+				"type": "String"
+			},
+			{
+				"name": "MEMBERENROLLMENTCUSTOMCODE2",
+				"type": "String"
+			},
+			{
+				"name": "MEMBERENROLLMENTCUSTOMCODE3",
+				"type": "String"
+			},
+			{
+				"name": "MEMBERENROLLMENTCUSTOMCODE4",
+				"type": "String"
+			},
+			{
+				"name": "MEMBERENROLLMENTCUSTOMCODE5",
+				"type": "String"
+			},
+			{
+				"name": "MEMBERENROLLMENTCUSTOMCODE6",
+				"type": "String"
+			},
+			{
+				"name": "MEDICARE_PLANID_NUMBER",
+				"type": "String"
+			},
+			{
+				"name": "SNP_ENROLLEE_TYPE",
+				"type": "String"
+			},
+			{
+				"name": "PCP_START_DATE",
+				"type": "String"
+			},
+			{
+				"name": "PCP_END_DATE",
+				"type": "String"
+			}
+		]
+	}
+}
