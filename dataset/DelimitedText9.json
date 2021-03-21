@@ -1,0 +1,220 @@
+{
+	"name": "DelimitedText9",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MemberSourceBlob",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "SRC_Member_Updated_csv.csv",
+				"container": "memberrefdata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "MEMBER_ID",
+				"type": "String"
+			},
+			{
+				"name": "FULL_NAME",
+				"type": "String"
+			},
+			{
+				"name": "FIRST_NAME",
+				"type": "String"
+			},
+			{
+				"name": "LAST_NAME",
+				"type": "String"
+			},
+			{
+				"name": "MIDDLE_NAME",
+				"type": "String"
+			},
+			{
+				"name": "SSN",
+				"type": "String"
+			},
+			{
+				"name": "DOB",
+				"type": "String"
+			},
+			{
+				"name": "GENDER",
+				"type": "String"
+			},
+			{
+				"name": "MEDICARE_ID",
+				"type": "String"
+			},
+			{
+				"name": "MEDICAID_ID",
+				"type": "String"
+			},
+			{
+				"name": "SUBSCRIBER_ID",
+				"type": "String"
+			},
+			{
+				"name": "MEMBERALTID1",
+				"type": "String"
+			},
+			{
+				"name": "MEMBERALTID2",
+				"type": "String"
+			},
+			{
+				"name": "MEMBERALTID3",
+				"type": "String"
+			},
+			{
+				"name": "MEMBERALTID4",
+				"type": "String"
+			},
+			{
+				"name": "MEMBERALTID5",
+				"type": "String"
+			},
+			{
+				"name": "MEMBERALTID6",
+				"type": "String"
+			},
+			{
+				"name": "RELATIONSHIP",
+				"type": "String"
+			},
+			{
+				"name": "ADDRESS1",
+				"type": "String"
+			},
+			{
+				"name": "ADDRESS2",
+				"type": "String"
+			},
+			{
+				"name": "CITY",
+				"type": "String"
+			},
+			{
+				"name": "STATE",
+				"type": "String"
+			},
+			{
+				"name": "ZIP",
+				"type": "String"
+			},
+			{
+				"name": "COUNTY",
+				"type": "String"
+			},
+			{
+				"name": "HOME_PHONE",
+				"type": "String"
+			},
+			{
+				"name": "MOBILE_PHONE",
+				"type": "String"
+			},
+			{
+				"name": "EMAIL_ADDRESS",
+				"type": "String"
+			},
+			{
+				"name": "MARITAL_STATUS",
+				"type": "String"
+			},
+			{
+				"name": "RACE",
+				"type": "String"
+			},
+			{
+				"name": "ETHNICITY",
+				"type": "String"
+			},
+			{
+				"name": "RBI_ETHNICITY",
+				"type": "String"
+			},
+			{
+				"name": "RACEETHNICITYSOURCE",
+				"type": "String"
+			},
+			{
+				"name": "LANGUAGESPOKEN",
+				"type": "String"
+			},
+			{
+				"name": "LANGUAGEWRITTEN",
+				"type": "String"
+			},
+			{
+				"name": "LANGUAGEOTHER",
+				"type": "String"
+			},
+			{
+				"name": "LANGUAGESPOKENSOURCE",
+				"type": "String"
+			},
+			{
+				"name": "LANGUAGEWRITTENSOURCE",
+				"type": "String"
+			},
+			{
+				"name": "LANGUAGEOTHERSOURCE",
+				"type": "String"
+			},
+			{
+				"name": "ALTERNATE_PHONE1",
+				"type": "String"
+			},
+			{
+				"name": "ALTERNATE_PHONE2",
+				"type": "String"
+			},
+			{
+				"name": "ALTERNATE_PHONE3",
+				"type": "String"
+			},
+			{
+				"name": "ALTERNATE_PHONE4",
+				"type": "String"
+			},
+			{
+				"name": "ALTERNATE_PHONE5",
+				"type": "String"
+			},
+			{
+				"name": "AUTHORIZED_REP_A",
+				"type": "String"
+			},
+			{
+				"name": "AUTHORIZED_REP_A_PHONE_1",
+				"type": "String"
+			},
+			{
+				"name": "AUTHORIZED_REP_A_PHONE_2",
+				"type": "String"
+			},
+			{
+				"name": "AUTHORIZED_REP_B",
+				"type": "String"
+			},
+			{
+				"name": "AUTHORIZED_REP_B_PHONE_1",
+				"type": "String"
+			},
+			{
+				"name": "AUTHORIZED_REP_B_PHONE_2",
+				"type": "String"
+			}
+		]
+	}
+}
