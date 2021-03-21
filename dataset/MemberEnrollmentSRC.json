@@ -20,10 +20,6 @@
 		},
 		"schema": [
 			{
-				"name": "Member_Enrollment_ID ",
-				"type": "String"
-			},
-			{
 				"name": "Member_KEY",
 				"type": "String"
 			},
