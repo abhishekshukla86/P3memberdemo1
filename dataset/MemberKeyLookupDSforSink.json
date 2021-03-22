@@ -1,0 +1,26 @@
+{
+	"name": "MemberKeyLookupDSforSink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Staging_P3_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Member_Alternate_Identifier",
+				"type": "varchar"
+			},
+			{
+				"name": "Member_id",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Member_alternate_identifier"
+		}
+	}
+}
