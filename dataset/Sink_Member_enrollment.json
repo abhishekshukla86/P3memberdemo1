@@ -1,0 +1,282 @@
+{
+	"name": "Sink_Member_enrollment",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Staging_P3_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Member_Enrollment_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Member_KEY",
+				"type": "varchar"
+			},
+			{
+				"name": "Client_Member_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "Enrollment_Contract_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Enrollment_Benefit_Plan_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Coverage_Begin",
+				"type": "date"
+			},
+			{
+				"name": "Coverage_End",
+				"type": "date"
+			},
+			{
+				"name": "MEDICAL_BENEFIT_Flag",
+				"type": "varchar"
+			},
+			{
+				"name": "Payer_Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Product_Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Client_Provider_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "Provider_Type_Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Mental_Health_Ambulatory_Indicator",
+				"type": "varchar"
+			},
+			{
+				"name": "Mental_Health_Inpatient_Indicator",
+				"type": "varchar"
+			},
+			{
+				"name": "Mental_Health_24Hour_Indicator",
+				"type": "varchar"
+			},
+			{
+				"name": "Chemical_Dependency_Ambulatory_Indicator",
+				"type": "varchar"
+			},
+			{
+				"name": "Chemical_Dependency_Inpatient_Indicator",
+				"type": "varchar"
+			},
+			{
+				"name": "Chemical_Dependency_24Hour_Indicator",
+				"type": "varchar"
+			},
+			{
+				"name": "Prescription_Drug_Indicator",
+				"type": "varchar"
+			},
+			{
+				"name": "Vision_Indicator",
+				"type": "varchar"
+			},
+			{
+				"name": "Dental_Indicator",
+				"type": "varchar"
+			},
+			{
+				"name": "Hospice_Indicator",
+				"type": "varchar"
+			},
+			{
+				"name": "Disease_Management_Program_Indicator",
+				"type": "varchar"
+			},
+			{
+				"name": "Disease_Management_Severity_Factor",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "member_group_code",
+				"type": "varchar"
+			},
+			{
+				"name": "OTHER_INSURANCE_FLAG",
+				"type": "varchar"
+			},
+			{
+				"name": "PRIMARY_INSURANCE_FLAG",
+				"type": "varchar"
+			},
+			{
+				"name": "Plan_Employee_Indicator",
+				"type": "varchar"
+			},
+			{
+				"name": "medicare_contract_code",
+				"type": "varchar"
+			},
+			{
+				"name": "AID_GROUP",
+				"type": "varchar"
+			},
+			{
+				"name": "COBRA_FLAG",
+				"type": "varchar"
+			},
+			{
+				"name": "COVERAGE_TIER",
+				"type": "varchar"
+			},
+			{
+				"name": "EMPLOYERCODE",
+				"type": "varchar"
+			},
+			{
+				"name": "EMPLOYERDESCRIPTION",
+				"type": "varchar"
+			},
+			{
+				"name": "Member_enrollment_CustomCode_1",
+				"type": "varchar"
+			},
+			{
+				"name": "Member_enrollment_CustomCode_2",
+				"type": "varchar"
+			},
+			{
+				"name": "Member_enrollment_CustomCode_3",
+				"type": "varchar"
+			},
+			{
+				"name": "Member_Enrollment_CustomCode_4",
+				"type": "varchar"
+			},
+			{
+				"name": "Member_Enrollment_CustomCode_5",
+				"type": "varchar"
+			},
+			{
+				"name": "Member_Enrollment_CustomCode_6",
+				"type": "varchar"
+			},
+			{
+				"name": "plan_code",
+				"type": "varchar"
+			},
+			{
+				"name": "SNP_ENROLLEE_TYPE",
+				"type": "varchar"
+			},
+			{
+				"name": "PCP_START_DATE",
+				"type": "date"
+			},
+			{
+				"name": "PCP_END_DATE",
+				"type": "date"
+			},
+			{
+				"name": "Client_Member_Enrollment_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "Member_Enrollment_Member_Alternate_Identifier_1",
+				"type": "varchar"
+			},
+			{
+				"name": "Member_Enrollment_Alternate_Identifier_2",
+				"type": "varchar"
+			},
+			{
+				"name": "Member_Enrollment_Alternate_Identifier_3",
+				"type": "varchar"
+			},
+			{
+				"name": "Member_Enrollment_Alternate_Identifier_4",
+				"type": "varchar"
+			},
+			{
+				"name": "Member_Enrollment_Alternate_Identifier_5",
+				"type": "varchar"
+			},
+			{
+				"name": "Member_Enrollment_Alternate_Identifier_6",
+				"type": "varchar"
+			},
+			{
+				"name": "Member_Enrollment_Alternate_Identifier_7",
+				"type": "varchar"
+			},
+			{
+				"name": "Member_Enrollment_Alternate_Identifier_8",
+				"type": "varchar"
+			},
+			{
+				"name": "Benefit_Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Member_Enrollment_QHP_State",
+				"type": "varchar"
+			},
+			{
+				"name": "ESRD_Flag",
+				"type": "varchar"
+			},
+			{
+				"name": "LTI_Flag",
+				"type": "varchar"
+			},
+			{
+				"name": "Issuer_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "Metal_Level",
+				"type": "varchar"
+			},
+			{
+				"name": "Cost_Sharing_Reduction_Code",
+				"type": "varchar"
+			},
+			{
+				"name": "MSPF_lag",
+				"type": "varchar"
+			},
+			{
+				"name": "Market_Coverage",
+				"type": "varchar"
+			},
+			{
+				"name": "Enrollment_Route",
+				"type": "varchar"
+			},
+			{
+				"name": "CSR_Eligibility_Flag",
+				"type": "varchar"
+			},
+			{
+				"name": "Plan_Marketing_Name",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Member_Enrollment"
+		}
+	}
+}
