@@ -1,0 +1,22 @@
+{
+	"name": "DestinationDataset_l0a",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Module3copydata2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "copydata1in2",
+				"container": "copydata2"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
