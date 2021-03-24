@@ -276,7 +276,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "Member_Enrollment"
+			"table": "Member_Enrollment_test1"
 		}
 	}
 }
