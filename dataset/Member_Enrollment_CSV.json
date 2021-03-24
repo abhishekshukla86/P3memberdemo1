@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "SRC_Member_Enrollment.csv",
+				"fileName": "SRC_Member_Enrollment_date_format1.csv",
 				"container": "memberrefdata"
 			},
 			"columnDelimiter": ",",
