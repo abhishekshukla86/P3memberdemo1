@@ -1,0 +1,25 @@
+{
+	"name": "AzureSqlTable13",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Staging_P3_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Line_Of_Business_Category_Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Line_Of_Business_Category_Code_Desc",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "REF_LineOfBusinessCategoryCode"
+		}
+	}
+}
