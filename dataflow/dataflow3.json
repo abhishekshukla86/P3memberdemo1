@@ -10,6 +10,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable14",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
 				}
 			],
 			"sinks": [
@@ -26,7 +33,7 @@
 					"name": "SurrogateKey1"
 				}
 			],
-			"script": "source(output(\n\t\tTable as string,\n\t\tField as string,\n\t\tReference_Code as string,\n\t\tReference_Code_Value as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 keyGenerate(output(Ref_Data_ID as long),\n\tstartAt: 1L) ~> SurrogateKey1\nSurrogateKey1 sink(input(\n\t\tRef_Data_ID as integer,\n\t\tRef_Table as string,\n\t\tRef_Field as string,\n\t\tReference_Code as string,\n\t\tReference_Code_Description as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tmapColumn(\n\t\tRef_Data_ID,\n\t\tReference_Code\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> sink1"
+			"script": "source(output(\n\t\tTable as string,\n\t\tField as string,\n\t\tReference_Code as string,\n\t\tReference_Code_Value as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource(output(\n\t\tRef_Data_ID as integer,\n\t\tRef_Table as string,\n\t\tRef_Field as string,\n\t\tReference_Code as string,\n\t\tReference_Code_Description as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tquery: (\"select max([Ref_Data_ID]) as LastMaxKey from dbo.REF_Data\"),\n\tformat: 'query') ~> source2\nsource1 keyGenerate(output(Ref_Data_ID as long),\n\tstartAt: 1L) ~> SurrogateKey1\nSurrogateKey1 sink(input(\n\t\tRef_Data_ID as integer,\n\t\tRef_Table as string,\n\t\tRef_Field as string,\n\t\tReference_Code as string,\n\t\tReference_Code_Description as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tmapColumn(\n\t\tRef_Data_ID,\n\t\tReference_Code\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> sink1"
 		}
 	}
 }
