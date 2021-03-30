@@ -8,10 +8,9 @@
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
-			"sheetName": "Sheet1",
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "SRC_ReferenceData.xlsx",
+				"fileName": "SRC_ReferenceData (2).xlsx",
 				"container": "memberrefdata"
 			},
 			"firstRowAsHeader": true
