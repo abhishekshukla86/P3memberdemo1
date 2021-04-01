@@ -3,18 +3,10 @@
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
-			"sources": [
-				{
-					"dataset": {
-						"referenceName": "AzureSqlTable14",
-						"type": "DatasetReference"
-					},
-					"name": "MAXSURGTKEY"
-				}
-			],
+			"sources": [],
 			"sinks": [],
 			"transformations": [],
-			"script": "source(output(\n\t\tRef_Data_ID as integer,\n\t\tRef_Table as string,\n\t\tRef_Field as string,\n\t\tReference_Code as string,\n\t\tReference_Code_Description as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tquery: (\"select max([Ref_Data_ID]) as maxkey from dbo.REF_Data\"),\n\tformat: 'query') ~> MAXSURGTKEY"
+			"script": ""
 		}
 	}
 }
