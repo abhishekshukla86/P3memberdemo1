@@ -11,6 +11,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'MemberSourceBlob'"
 		},
+		"Module3copydata1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Module3copydata1'"
+		},
+		"Module3copydata2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Module3copydata2'"
+		},
 		"REF_Data_P3MemberCSV_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'REF_Data_P3MemberCSV'"
@@ -60,6 +68,12 @@
 					},
 					"MemberSourceBlob_connectionString": {
 						"value": "[parameters('MemberSourceBlob_connectionString')]"
+					},
+					"Module3copydata1_connectionString": {
+						"value": "[parameters('Module3copydata1_connectionString')]"
+					},
+					"Module3copydata2_connectionString": {
+						"value": "[parameters('Module3copydata2_connectionString')]"
 					},
 					"REF_Data_P3MemberCSV_connectionString": {
 						"value": "[parameters('REF_Data_P3MemberCSV_connectionString')]"
@@ -138,6 +152,46 @@
 			},
 			"dependsOn": [
 				"[resourceId('Microsoft.Resources/deployments', 'abDataFactory1_ArmTemplate_2')]"
+			]
+		},
+		{
+			"name": "abDataFactory1_ArmTemplate_4",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_4.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'abDataFactory1_ArmTemplate_3')]"
+			]
+		},
+		{
+			"name": "abDataFactory1_ArmTemplate_5",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_5.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'abDataFactory1_ArmTemplate_4')]"
 			]
 		}
 	]

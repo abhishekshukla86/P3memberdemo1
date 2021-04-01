@@ -13,157 +13,135 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/Source_PlantType')]",
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable7')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "MemberSourceBlob",
+					"referenceName": "Staging_P3_DB",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "SRC_BenefitPlantype.csv",
-						"container": "memberrefdata"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
+				"type": "AzureSqlTable",
 				"schema": [
 					{
-						"name": "Code",
-						"type": "String"
+						"name": "Enrollment_Contract_ID",
+						"type": "int",
+						"precision": 10
 					},
 					{
-						"name": "Description",
-						"type": "String"
+						"name": "Contract_Number",
+						"type": "varchar"
+					},
+					{
+						"name": "Contract_Desc",
+						"type": "varchar"
+					},
+					{
+						"name": "Contract_Category_Code",
+						"type": "varchar"
+					},
+					{
+						"name": "Line_Of_Business_Category_Code",
+						"type": "varchar"
+					},
+					{
+						"name": "Line_Of_Business_Sub_Category_Code",
+						"type": "varchar"
 					}
-				]
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Enrollment_contract"
+				}
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Source_REF_LineOfBusCatCode')]",
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable8')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "MemberSourceBlob",
+					"referenceName": "Staging_P3_DB",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "SRC_LineOfBusinessCategoryCode.csv",
-						"container": "memberrefdata"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
+				"type": "AzureSqlTable",
 				"schema": [
 					{
-						"name": "Code",
-						"type": "String"
+						"name": "Enrollment_Contract_ID",
+						"type": "int",
+						"precision": 10
 					},
 					{
-						"name": "Description",
-						"type": "String"
+						"name": "Contract_Number",
+						"type": "varchar"
+					},
+					{
+						"name": "Contract_Desc",
+						"type": "varchar"
+					},
+					{
+						"name": "Contract_Category_Code",
+						"type": "varchar"
+					},
+					{
+						"name": "Line_Of_Business_Category_Code",
+						"type": "varchar"
+					},
+					{
+						"name": "Line_Of_Business_Sub_Category_Code",
+						"type": "varchar"
 					}
-				]
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Enrollment_contract"
+				}
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Source_REF_PopulationCatCode')]",
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable9')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "MemberSourceBlob",
+					"referenceName": "Staging_P3_DB",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "SRC_PopulationCategoryCodes.csv",
-						"container": "memberrefdata"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
+				"type": "AzureSqlTable",
 				"schema": [
 					{
-						"name": "Code",
-						"type": "String"
+						"name": "Enrollment_Benefit_Plan_ID",
+						"type": "int",
+						"precision": 10
 					},
 					{
-						"name": "Description",
-						"type": "String"
+						"name": "Enrollment_Contract_ID",
+						"type": "int",
+						"precision": 10
 					},
 					{
-						"name": "LOB Sub-Category",
-						"type": "String"
+						"name": "Plan_ID",
+						"type": "varchar"
+					},
+					{
+						"name": "Plan_Benefit_ID",
+						"type": "varchar"
 					}
-				]
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Enrollment_Benefit_Plan"
+				}
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Source_Ref_data_excel')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "MemberSourceBlob",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "Sheet1",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "SRC_ReferenceData.xlsx",
-						"container": "memberrefdata"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "Table",
-						"type": "String"
-					},
-					{
-						"name": "Field",
-						"type": "String"
-					},
-					{
-						"name": "Reference_Code",
-						"type": "String"
-					},
-					{
-						"name": "Reference_Code_Value",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/REF_ContractCatCode')]",
+			"name": "[concat(parameters('factoryName'), '/ContractCatCode')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -198,73 +176,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Sink_ContactCatCode')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Staging_P3_DB",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "REF_ContractCategoryCode"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SinkContactCatCode')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Staging_P3_DB",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Contract_Category_Code",
-						"type": "varchar"
-					},
-					{
-						"name": "Contract_Category_Code_Desc",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "REF_ContractCategoryCode"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlTable3')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Staging_P3_DB",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "error_table1"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Source_contractCatCode_excel')]",
+			"name": "[concat(parameters('factoryName'), '/DelimitedText1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -273,19 +185,403 @@
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "Excel",
+				"type": "DelimitedText",
 				"typeProperties": {
-					"sheetName": "SRC_ContractCategoryCode2",
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "SRC_ContractCategoryCode_excel.xlsx",
+						"fileName": "SRC_Enrollnment_contract.csv",
 						"container": "memberrefdata"
 					},
-					"firstRowAsHeader": true
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
 				},
 				"schema": [
 					{
-						"name": "Code ",
+						"name": "Enrollment_Contract_ID",
+						"type": "String"
+					},
+					{
+						"name": "Contract_Number",
+						"type": "String"
+					},
+					{
+						"name": "Contract_Desc",
+						"type": "String"
+					},
+					{
+						"name": "Contract_Category_Code",
+						"type": "String"
+					},
+					{
+						"name": "Line_Of_Business_Category_Code",
+						"type": "String"
+					},
+					{
+						"name": "Line_Of_Business_Sub_Category_Code",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText10')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "MemberSourceBlob",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "SRC_Member_Updated_csv.csv",
+						"container": "memberrefdata"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "MEMBER_ID",
+						"type": "String"
+					},
+					{
+						"name": "FULL_NAME",
+						"type": "String"
+					},
+					{
+						"name": "FIRST_NAME",
+						"type": "String"
+					},
+					{
+						"name": "LAST_NAME",
+						"type": "String"
+					},
+					{
+						"name": "MIDDLE_NAME",
+						"type": "String"
+					},
+					{
+						"name": "SSN",
+						"type": "String"
+					},
+					{
+						"name": "Member_Key",
+						"type": "String"
+					},
+					{
+						"name": "DOB",
+						"type": "String"
+					},
+					{
+						"name": "GENDER",
+						"type": "String"
+					},
+					{
+						"name": "MEDICARE_ID",
+						"type": "String"
+					},
+					{
+						"name": "MEDICAID_ID",
+						"type": "String"
+					},
+					{
+						"name": "SUBSCRIBER_ID",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID1",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID2",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID3",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID4",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID5",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID6",
+						"type": "String"
+					},
+					{
+						"name": "RELATIONSHIP",
+						"type": "String"
+					},
+					{
+						"name": "ADDRESS1",
+						"type": "String"
+					},
+					{
+						"name": "ADDRESS2",
+						"type": "String"
+					},
+					{
+						"name": "CITY",
+						"type": "String"
+					},
+					{
+						"name": "STATE",
+						"type": "String"
+					},
+					{
+						"name": "ZIP",
+						"type": "String"
+					},
+					{
+						"name": "COUNTY",
+						"type": "String"
+					},
+					{
+						"name": "Member_Contact_Pref",
+						"type": "String"
+					},
+					{
+						"name": "Location_Usage_Type_Code",
+						"type": "String"
+					},
+					{
+						"name": "Location_Usage_Preference_Code",
+						"type": "String"
+					},
+					{
+						"name": "HOME_PHONE",
+						"type": "String"
+					},
+					{
+						"name": "MOBILE_PHONE",
+						"type": "String"
+					},
+					{
+						"name": "Phone_Usage_Type_Code",
+						"type": "String"
+					},
+					{
+						"name": "Phone_Usage_Preference_Code",
+						"type": "String"
+					},
+					{
+						"name": "EMAIL_ADDRESS",
+						"type": "String"
+					},
+					{
+						"name": "Email_Usage_Type_Code",
+						"type": "String"
+					},
+					{
+						"name": "Email_Usage_Preference_Code",
+						"type": "String"
+					},
+					{
+						"name": "MARITAL_STATUS",
+						"type": "String"
+					},
+					{
+						"name": "RACE",
+						"type": "String"
+					},
+					{
+						"name": "ETHNICITY",
+						"type": "String"
+					},
+					{
+						"name": "Ethnicity_Type",
+						"type": "String"
+					},
+					{
+						"name": "RBI_ETHNICITY",
+						"type": "String"
+					},
+					{
+						"name": "Deceased_Date",
+						"type": "String"
+					},
+					{
+						"name": "RACEETHNICITYSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGESPOKEN",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEWRITTEN",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEOTHER",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGESPOKENSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEWRITTENSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEOTHERSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "Languge_Usage_Type_Code",
+						"type": "String"
+					},
+					{
+						"name": "Languge_Usage_Preference_Code",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE1",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE2",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE3",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE4",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE5",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_A",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_A_PHONE_1",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_A_PHONE_2",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_B",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_B_PHONE_1",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_B_PHONE_2",
+						"type": "String"
+					},
+					{
+						"name": "OREC",
+						"type": "String"
+					},
+					{
+						"name": "ECDS_Flag",
+						"type": "String"
+					},
+					{
+						"name": "Enrollee_Unique_ID",
+						"type": "String"
+					},
+					{
+						"name": "QHP_State",
+						"type": "String"
+					},
+					{
+						"name": "Citizenship_Status_Code",
+						"type": "String"
+					},
+					{
+						"name": "Country_Flips_Code",
+						"type": "String"
+					},
+					{
+						"name": "White_Indirect_Estimate",
+						"type": "String"
+					},
+					{
+						"name": "Black_Indirect_Estimate",
+						"type": "String"
+					},
+					{
+						"name": "Asian_Indirect_Estimate",
+						"type": "String"
+					},
+					{
+						"name": "Ame_rIndian_Indirect_Estimate",
+						"type": "String"
+					},
+					{
+						"name": "Other_Indirect_Estimate",
+						"type": "String"
+					},
+					{
+						"name": "Hispanic_Indirect_Estimate",
+						"type": "String"
+					},
+					{
+						"name": "Client_ID_Number",
+						"type": "String"
+					},
+					{
+						"name": "CMS_PlanID",
+						"type": "String"
+					},
+					{
+						"name": "Client_Member_ID",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText11')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "MemberSourceBlob",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "SRC_LineOfBusinessCategoryCode.csv",
+						"container": "memberrefdata"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Code",
 						"type": "String"
 					},
 					{
@@ -297,107 +593,50 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlTable4')]",
+			"name": "[concat(parameters('factoryName'), '/DelimitedText2')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "Staging_P3_DB",
+					"referenceName": "MemberSourceBlob",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "AzureSqlTable",
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "SRC_Enrollment_Benefit_Plan.csv",
+						"container": "memberrefdata"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
 				"schema": [
 					{
-						"name": "Contract_Category_Code",
-						"type": "varchar"
+						"name": "Enrollment_Benefit_Plan_ID ",
+						"type": "String"
 					},
 					{
-						"name": "Contract_Category_Code_Desc",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "REF_ContractCategoryCode"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Sink_PlanCode')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Staging_P3_DB",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
+						"name": "Enrollment_Contract_ID",
+						"type": "String"
+					},
 					{
 						"name": "Plan_ID",
-						"type": "varchar"
+						"type": "String"
 					},
 					{
-						"name": "Plan_Start_Date",
-						"type": "date"
-					},
-					{
-						"name": "Plan_End_Date",
-						"type": "date"
-					},
-					{
-						"name": "Plan_Name_Description",
-						"type": "varchar"
-					},
-					{
-						"name": "Line_Of_Business",
-						"type": "varchar"
-					},
-					{
-						"name": "Plan_Product_Code",
-						"type": "varchar"
-					},
-					{
-						"name": "market_Type",
-						"type": "varchar"
-					},
-					{
-						"name": "Grandfathered_Plan_Flag",
-						"type": "char"
-					},
-					{
-						"name": "Metal_level",
-						"type": "varchar"
-					},
-					{
-						"name": "Acturial_Value",
-						"type": "varchar"
-					},
-					{
-						"name": "Issuer_State",
-						"type": "varchar"
-					},
-					{
-						"name": "Issuer_ID",
-						"type": "varchar"
-					},
-					{
-						"name": "Plan_On_Off_Exchange_Indicator",
-						"type": "char"
+						"name": "Plan_Benefit_ID",
+						"type": "String"
 					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "Plann"
-				}
+				]
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Source_STG_Plan_benefits')]",
+			"name": "[concat(parameters('factoryName'), '/DelimitedText3')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -410,7 +649,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "SRC_PlanBenefits.csv",
+						"fileName": "SRC_Member.csv",
 						"container": "memberrefdata"
 					},
 					"columnDelimiter": ",",
@@ -420,35 +659,199 @@
 				},
 				"schema": [
 					{
-						"name": "Plan_Benefit_ID",
+						"name": "MEMBER_ID",
 						"type": "String"
 					},
 					{
-						"name": "Plan_Benefit_Start_Date",
+						"name": "FULL_NAME",
 						"type": "String"
 					},
 					{
-						"name": "Plan_Benefit_End_Date",
+						"name": "FIRST_NAME",
 						"type": "String"
 					},
 					{
-						"name": "Plan_Benefit_Description",
+						"name": "LAST_NAME",
 						"type": "String"
 					},
 					{
-						"name": "Line_Of_Business                  ",
+						"name": "MIDDLE_NAME",
 						"type": "String"
 					},
 					{
-						"name": "Plan_Product_Code                 ",
+						"name": "SSN",
 						"type": "String"
 					},
 					{
-						"name": "Benefit_Plan_Type_Code",
+						"name": "DOB",
 						"type": "String"
 					},
 					{
-						"name": "Population_Category_Code",
+						"name": "GENDER",
+						"type": "String"
+					},
+					{
+						"name": "MEDICARE_ID",
+						"type": "String"
+					},
+					{
+						"name": "MEDICAID_ID",
+						"type": "String"
+					},
+					{
+						"name": "SUBSCRIBER_ID",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID1",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID2",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID3",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID4",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID5",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID6",
+						"type": "String"
+					},
+					{
+						"name": "RELATIONSHIP",
+						"type": "String"
+					},
+					{
+						"name": "ADDRESS1",
+						"type": "String"
+					},
+					{
+						"name": "ADDRESS2",
+						"type": "String"
+					},
+					{
+						"name": "CITY",
+						"type": "String"
+					},
+					{
+						"name": "STATE",
+						"type": "String"
+					},
+					{
+						"name": "ZIP",
+						"type": "String"
+					},
+					{
+						"name": "COUNTY",
+						"type": "String"
+					},
+					{
+						"name": "HOME_PHONE",
+						"type": "String"
+					},
+					{
+						"name": "MOBILE_PHONE",
+						"type": "String"
+					},
+					{
+						"name": "EMAIL_ADDRESS",
+						"type": "String"
+					},
+					{
+						"name": "MARITAL_STATUS",
+						"type": "String"
+					},
+					{
+						"name": "RACE",
+						"type": "String"
+					},
+					{
+						"name": "ETHNICITY",
+						"type": "String"
+					},
+					{
+						"name": "RBI_ETHNICITY",
+						"type": "String"
+					},
+					{
+						"name": "RACEETHNICITYSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGESPOKEN",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEWRITTEN",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEOTHER",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGESPOKENSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEWRITTENSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEOTHERSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE1",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE2",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE3",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE4",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE5",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_A",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_A_PHONE_1",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_A_PHONE_2",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_B",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_B_PHONE_1",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_B_PHONE_2",
 						"type": "String"
 					}
 				]
@@ -456,26 +859,1702 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Sink_STG_Plan_Benefits')]",
+			"name": "[concat(parameters('factoryName'), '/DelimitedText4')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "Staging_P3_DB",
+					"referenceName": "MemberSourceBlob",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
+				"type": "DelimitedText",
 				"typeProperties": {
-					"schema": "dbo",
-					"table": "Plan_Benefits"
-				}
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "SRC_Member.csv",
+						"container": "memberrefdata"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "MEMBER_ID",
+						"type": "String"
+					},
+					{
+						"name": "FIRST_NAME",
+						"type": "String"
+					},
+					{
+						"name": "LAST_NAME",
+						"type": "String"
+					},
+					{
+						"name": "MIDDLE_NAME",
+						"type": "String"
+					},
+					{
+						"name": "SSN",
+						"type": "String"
+					},
+					{
+						"name": "DOB",
+						"type": "String"
+					},
+					{
+						"name": "GENDER",
+						"type": "String"
+					},
+					{
+						"name": "MEDICARE_ID",
+						"type": "String"
+					},
+					{
+						"name": "MEDICAID_ID",
+						"type": "String"
+					},
+					{
+						"name": "SUBSCRIBER_ID",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID1",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID2",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID3",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID4",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID5",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID6",
+						"type": "String"
+					},
+					{
+						"name": "RELATIONSHIP",
+						"type": "String"
+					},
+					{
+						"name": "ADDRESS1",
+						"type": "String"
+					},
+					{
+						"name": "ADDRESS2",
+						"type": "String"
+					},
+					{
+						"name": "CITY",
+						"type": "String"
+					},
+					{
+						"name": "STATE",
+						"type": "String"
+					},
+					{
+						"name": "ZIP",
+						"type": "String"
+					},
+					{
+						"name": "COUNTY",
+						"type": "String"
+					},
+					{
+						"name": "HOME_PHONE",
+						"type": "String"
+					},
+					{
+						"name": "MOBILE_PHONE",
+						"type": "String"
+					},
+					{
+						"name": "EMAIL_ADDRESS",
+						"type": "String"
+					},
+					{
+						"name": "MARITAL_STATUS",
+						"type": "String"
+					},
+					{
+						"name": "RACE",
+						"type": "String"
+					},
+					{
+						"name": "ETHNICITY",
+						"type": "String"
+					},
+					{
+						"name": "RBI_ETHNICITY",
+						"type": "String"
+					},
+					{
+						"name": "RACEETHNICITYSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGESPOKEN",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEWRITTEN",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEOTHER",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGESPOKENSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEWRITTENSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEOTHERSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE1",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE2",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE3",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE4",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE5",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_A",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_A_PHONE_1",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_A_PHONE_2",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_B",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_B_PHONE_1",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_B_PHONE_2",
+						"type": "String"
+					}
+				]
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Source_Plan_Code_excel')]",
+			"name": "[concat(parameters('factoryName'), '/DelimitedText5')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "MemberSourceBlob",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "SRC_Member.csv",
+						"container": "memberrefdata"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "MEMBER_ID",
+						"type": "String"
+					},
+					{
+						"name": "FIRST_NAME",
+						"type": "String"
+					},
+					{
+						"name": "LAST_NAME",
+						"type": "String"
+					},
+					{
+						"name": "MIDDLE_NAME",
+						"type": "String"
+					},
+					{
+						"name": "SSN",
+						"type": "String"
+					},
+					{
+						"name": "DOB",
+						"type": "String"
+					},
+					{
+						"name": "GENDER",
+						"type": "String"
+					},
+					{
+						"name": "MEDICARE_ID",
+						"type": "String"
+					},
+					{
+						"name": "MEDICAID_ID",
+						"type": "String"
+					},
+					{
+						"name": "SUBSCRIBER_ID",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID1",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID2",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID3",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID4",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID5",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID6",
+						"type": "String"
+					},
+					{
+						"name": "RELATIONSHIP",
+						"type": "String"
+					},
+					{
+						"name": "ADDRESS1",
+						"type": "String"
+					},
+					{
+						"name": "ADDRESS2",
+						"type": "String"
+					},
+					{
+						"name": "CITY",
+						"type": "String"
+					},
+					{
+						"name": "STATE",
+						"type": "String"
+					},
+					{
+						"name": "ZIP",
+						"type": "String"
+					},
+					{
+						"name": "COUNTY",
+						"type": "String"
+					},
+					{
+						"name": "HOME_PHONE",
+						"type": "String"
+					},
+					{
+						"name": "MOBILE_PHONE",
+						"type": "String"
+					},
+					{
+						"name": "EMAIL_ADDRESS",
+						"type": "String"
+					},
+					{
+						"name": "MARITAL_STATUS",
+						"type": "String"
+					},
+					{
+						"name": "RACE",
+						"type": "String"
+					},
+					{
+						"name": "ETHNICITY",
+						"type": "String"
+					},
+					{
+						"name": "RBI_ETHNICITY",
+						"type": "String"
+					},
+					{
+						"name": "RACEETHNICITYSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGESPOKEN",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEWRITTEN",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEOTHER",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGESPOKENSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEWRITTENSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEOTHERSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE1",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE2",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE3",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE4",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE5",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_A",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_A_PHONE_1",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_A_PHONE_2",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_B",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_B_PHONE_1",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_B_PHONE_2",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText6')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "MemberSourceBlob",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "SRC_Member_Updated_csv.csv",
+						"container": "memberrefdata"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "MEMBER_ID",
+						"type": "String"
+					},
+					{
+						"name": "FULL_NAME",
+						"type": "String"
+					},
+					{
+						"name": "FIRST_NAME",
+						"type": "String"
+					},
+					{
+						"name": "LAST_NAME",
+						"type": "String"
+					},
+					{
+						"name": "MIDDLE_NAME",
+						"type": "String"
+					},
+					{
+						"name": "SSN",
+						"type": "String"
+					},
+					{
+						"name": "DOB",
+						"type": "String"
+					},
+					{
+						"name": "GENDER",
+						"type": "String"
+					},
+					{
+						"name": "MEDICARE_ID",
+						"type": "String"
+					},
+					{
+						"name": "MEDICAID_ID",
+						"type": "String"
+					},
+					{
+						"name": "SUBSCRIBER_ID",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID1",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID2",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID3",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID4",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID5",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID6",
+						"type": "String"
+					},
+					{
+						"name": "RELATIONSHIP",
+						"type": "String"
+					},
+					{
+						"name": "ADDRESS1",
+						"type": "String"
+					},
+					{
+						"name": "ADDRESS2",
+						"type": "String"
+					},
+					{
+						"name": "CITY",
+						"type": "String"
+					},
+					{
+						"name": "STATE",
+						"type": "String"
+					},
+					{
+						"name": "ZIP",
+						"type": "String"
+					},
+					{
+						"name": "COUNTY",
+						"type": "String"
+					},
+					{
+						"name": "Member_Contact_Pref",
+						"type": "String"
+					},
+					{
+						"name": "Location_Usage_Type_Code",
+						"type": "String"
+					},
+					{
+						"name": "Location_Usage_Preference_Code",
+						"type": "String"
+					},
+					{
+						"name": "HOME_PHONE",
+						"type": "String"
+					},
+					{
+						"name": "MOBILE_PHONE",
+						"type": "String"
+					},
+					{
+						"name": "Phone_Usage_Type_Code",
+						"type": "String"
+					},
+					{
+						"name": "Phone_Usage_Preference_Code",
+						"type": "String"
+					},
+					{
+						"name": "EMAIL_ADDRESS",
+						"type": "String"
+					},
+					{
+						"name": "Email_Usage_Type_Code",
+						"type": "String"
+					},
+					{
+						"name": "Email_Usage_Preference_Code",
+						"type": "String"
+					},
+					{
+						"name": "MARITAL_STATUS",
+						"type": "String"
+					},
+					{
+						"name": "RACE",
+						"type": "String"
+					},
+					{
+						"name": "ETHNICITY",
+						"type": "String"
+					},
+					{
+						"name": "Ethnicity_Type",
+						"type": "String"
+					},
+					{
+						"name": "RBI_ETHNICITY",
+						"type": "String"
+					},
+					{
+						"name": "Deceased_Date",
+						"type": "String"
+					},
+					{
+						"name": "RACEETHNICITYSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGESPOKEN",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEWRITTEN",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEOTHER",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGESPOKENSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEWRITTENSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEOTHERSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "Languge_Usage_Type_Code",
+						"type": "String"
+					},
+					{
+						"name": "Languge_Usage_Preference_Code",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE1",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE2",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE3",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE4",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE5",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_A",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_A_PHONE_1",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_A_PHONE_2",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_B",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_B_PHONE_1",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_B_PHONE_2",
+						"type": "String"
+					},
+					{
+						"name": "OREC",
+						"type": "String"
+					},
+					{
+						"name": "ECDS_Flag",
+						"type": "String"
+					},
+					{
+						"name": "Enrollee_Unique_ID",
+						"type": "String"
+					},
+					{
+						"name": "QHP_State",
+						"type": "String"
+					},
+					{
+						"name": "Citizenship_Status_Code",
+						"type": "String"
+					},
+					{
+						"name": "Country_Flips_Code",
+						"type": "String"
+					},
+					{
+						"name": "White_Indirect_Estimate",
+						"type": "String"
+					},
+					{
+						"name": "Black_Indirect_Estimate",
+						"type": "String"
+					},
+					{
+						"name": "Asian_Indirect_Estimate",
+						"type": "String"
+					},
+					{
+						"name": "Ame_rIndian_Indirect_Estimate",
+						"type": "String"
+					},
+					{
+						"name": "Other_Indirect_Estimate",
+						"type": "String"
+					},
+					{
+						"name": "Hispanic_Indirect_Estimate",
+						"type": "String"
+					},
+					{
+						"name": "Client_ID_Number",
+						"type": "String"
+					},
+					{
+						"name": "CMS_PlanID",
+						"type": "String"
+					},
+					{
+						"name": "Client_Member_ID",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText7')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "MemberSourceBlob",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "SRC_Member_Updated_csv.csv",
+						"container": "memberrefdata"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "MEMBER_ID",
+						"type": "String"
+					},
+					{
+						"name": "FULL_NAME",
+						"type": "String"
+					},
+					{
+						"name": "FIRST_NAME",
+						"type": "String"
+					},
+					{
+						"name": "LAST_NAME",
+						"type": "String"
+					},
+					{
+						"name": "MIDDLE_NAME",
+						"type": "String"
+					},
+					{
+						"name": "SSN",
+						"type": "String"
+					},
+					{
+						"name": "DOB",
+						"type": "String"
+					},
+					{
+						"name": "GENDER",
+						"type": "String"
+					},
+					{
+						"name": "MEDICARE_ID",
+						"type": "String"
+					},
+					{
+						"name": "MEDICAID_ID",
+						"type": "String"
+					},
+					{
+						"name": "SUBSCRIBER_ID",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID1",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID2",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID3",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID4",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID5",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID6",
+						"type": "String"
+					},
+					{
+						"name": "RELATIONSHIP",
+						"type": "String"
+					},
+					{
+						"name": "ADDRESS1",
+						"type": "String"
+					},
+					{
+						"name": "ADDRESS2",
+						"type": "String"
+					},
+					{
+						"name": "CITY",
+						"type": "String"
+					},
+					{
+						"name": "STATE",
+						"type": "String"
+					},
+					{
+						"name": "ZIP",
+						"type": "String"
+					},
+					{
+						"name": "COUNTY",
+						"type": "String"
+					},
+					{
+						"name": "Member_Contact_Pref",
+						"type": "String"
+					},
+					{
+						"name": "Location_Usage_Type_Code",
+						"type": "String"
+					},
+					{
+						"name": "Location_Usage_Preference_Code",
+						"type": "String"
+					},
+					{
+						"name": "HOME_PHONE",
+						"type": "String"
+					},
+					{
+						"name": "MOBILE_PHONE",
+						"type": "String"
+					},
+					{
+						"name": "Phone_Usage_Type_Code",
+						"type": "String"
+					},
+					{
+						"name": "Phone_Usage_Preference_Code",
+						"type": "String"
+					},
+					{
+						"name": "EMAIL_ADDRESS",
+						"type": "String"
+					},
+					{
+						"name": "Email_Usage_Type_Code",
+						"type": "String"
+					},
+					{
+						"name": "Email_Usage_Preference_Code",
+						"type": "String"
+					},
+					{
+						"name": "MARITAL_STATUS",
+						"type": "String"
+					},
+					{
+						"name": "RACE",
+						"type": "String"
+					},
+					{
+						"name": "ETHNICITY",
+						"type": "String"
+					},
+					{
+						"name": "Ethnicity_Type",
+						"type": "String"
+					},
+					{
+						"name": "RBI_ETHNICITY",
+						"type": "String"
+					},
+					{
+						"name": "Deceased_Date",
+						"type": "String"
+					},
+					{
+						"name": "RACEETHNICITYSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGESPOKEN",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEWRITTEN",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEOTHER",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGESPOKENSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEWRITTENSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEOTHERSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "Languge_Usage_Type_Code",
+						"type": "String"
+					},
+					{
+						"name": "Languge_Usage_Preference_Code",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE1",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE2",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE3",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE4",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE5",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_A",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_A_PHONE_1",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_A_PHONE_2",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_B",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_B_PHONE_1",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_B_PHONE_2",
+						"type": "String"
+					},
+					{
+						"name": "OREC",
+						"type": "String"
+					},
+					{
+						"name": "ECDS_Flag",
+						"type": "String"
+					},
+					{
+						"name": "Enrollee_Unique_ID",
+						"type": "String"
+					},
+					{
+						"name": "QHP_State",
+						"type": "String"
+					},
+					{
+						"name": "Citizenship_Status_Code",
+						"type": "String"
+					},
+					{
+						"name": "Country_Flips_Code",
+						"type": "String"
+					},
+					{
+						"name": "White_Indirect_Estimate",
+						"type": "String"
+					},
+					{
+						"name": "Black_Indirect_Estimate",
+						"type": "String"
+					},
+					{
+						"name": "Asian_Indirect_Estimate",
+						"type": "String"
+					},
+					{
+						"name": "Ame_rIndian_Indirect_Estimate",
+						"type": "String"
+					},
+					{
+						"name": "Other_Indirect_Estimate",
+						"type": "String"
+					},
+					{
+						"name": "Hispanic_Indirect_Estimate",
+						"type": "String"
+					},
+					{
+						"name": "Client_ID_Number",
+						"type": "String"
+					},
+					{
+						"name": "CMS_PlanID",
+						"type": "String"
+					},
+					{
+						"name": "Client_Member_ID",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText8')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "MemberSourceBlob",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "SRC_Member_Updated_csv.csv",
+						"container": "memberrefdata"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "MEMBER_ID",
+						"type": "String"
+					},
+					{
+						"name": "FULL_NAME",
+						"type": "String"
+					},
+					{
+						"name": "FIRST_NAME",
+						"type": "String"
+					},
+					{
+						"name": "LAST_NAME",
+						"type": "String"
+					},
+					{
+						"name": "MIDDLE_NAME",
+						"type": "String"
+					},
+					{
+						"name": "SSN",
+						"type": "String"
+					},
+					{
+						"name": "Member_Key",
+						"type": "String"
+					},
+					{
+						"name": "DOB",
+						"type": "String"
+					},
+					{
+						"name": "GENDER",
+						"type": "String"
+					},
+					{
+						"name": "MEDICARE_ID",
+						"type": "String"
+					},
+					{
+						"name": "MEDICAID_ID",
+						"type": "String"
+					},
+					{
+						"name": "SUBSCRIBER_ID",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID1",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID2",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID3",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID4",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID5",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID6",
+						"type": "String"
+					},
+					{
+						"name": "RELATIONSHIP",
+						"type": "String"
+					},
+					{
+						"name": "ADDRESS1",
+						"type": "String"
+					},
+					{
+						"name": "ADDRESS2",
+						"type": "String"
+					},
+					{
+						"name": "CITY",
+						"type": "String"
+					},
+					{
+						"name": "STATE",
+						"type": "String"
+					},
+					{
+						"name": "ZIP",
+						"type": "String"
+					},
+					{
+						"name": "COUNTY",
+						"type": "String"
+					},
+					{
+						"name": "Member_Contact_Pref",
+						"type": "String"
+					},
+					{
+						"name": "Location_Usage_Type_Code",
+						"type": "String"
+					},
+					{
+						"name": "Location_Usage_Preference_Code",
+						"type": "String"
+					},
+					{
+						"name": "HOME_PHONE",
+						"type": "String"
+					},
+					{
+						"name": "MOBILE_PHONE",
+						"type": "String"
+					},
+					{
+						"name": "Phone_Usage_Type_Code",
+						"type": "String"
+					},
+					{
+						"name": "Phone_Usage_Preference_Code",
+						"type": "String"
+					},
+					{
+						"name": "EMAIL_ADDRESS",
+						"type": "String"
+					},
+					{
+						"name": "Email_Usage_Type_Code",
+						"type": "String"
+					},
+					{
+						"name": "Email_Usage_Preference_Code",
+						"type": "String"
+					},
+					{
+						"name": "MARITAL_STATUS",
+						"type": "String"
+					},
+					{
+						"name": "RACE",
+						"type": "String"
+					},
+					{
+						"name": "ETHNICITY",
+						"type": "String"
+					},
+					{
+						"name": "Ethnicity_Type",
+						"type": "String"
+					},
+					{
+						"name": "RBI_ETHNICITY",
+						"type": "String"
+					},
+					{
+						"name": "Deceased_Date",
+						"type": "String"
+					},
+					{
+						"name": "RACEETHNICITYSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGESPOKEN",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEWRITTEN",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEOTHER",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGESPOKENSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEWRITTENSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEOTHERSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "Languge_Usage_Type_Code",
+						"type": "String"
+					},
+					{
+						"name": "Languge_Usage_Preference_Code",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE1",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE2",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE3",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE4",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE5",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_A",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_A_PHONE_1",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_A_PHONE_2",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_B",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_B_PHONE_1",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_B_PHONE_2",
+						"type": "String"
+					},
+					{
+						"name": "OREC",
+						"type": "String"
+					},
+					{
+						"name": "ECDS_Flag",
+						"type": "String"
+					},
+					{
+						"name": "Enrollee_Unique_ID",
+						"type": "String"
+					},
+					{
+						"name": "QHP_State",
+						"type": "String"
+					},
+					{
+						"name": "Citizenship_Status_Code",
+						"type": "String"
+					},
+					{
+						"name": "Country_Flips_Code",
+						"type": "String"
+					},
+					{
+						"name": "White_Indirect_Estimate",
+						"type": "String"
+					},
+					{
+						"name": "Black_Indirect_Estimate",
+						"type": "String"
+					},
+					{
+						"name": "Asian_Indirect_Estimate",
+						"type": "String"
+					},
+					{
+						"name": "Ame_rIndian_Indirect_Estimate",
+						"type": "String"
+					},
+					{
+						"name": "Other_Indirect_Estimate",
+						"type": "String"
+					},
+					{
+						"name": "Hispanic_Indirect_Estimate",
+						"type": "String"
+					},
+					{
+						"name": "Client_ID_Number",
+						"type": "String"
+					},
+					{
+						"name": "CMS_PlanID",
+						"type": "String"
+					},
+					{
+						"name": "Client_Member_ID",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText9')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "MemberSourceBlob",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "SRC_Member_Updated_csv.csv",
+						"container": "memberrefdata"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "MEMBER_ID",
+						"type": "String"
+					},
+					{
+						"name": "FULL_NAME",
+						"type": "String"
+					},
+					{
+						"name": "FIRST_NAME",
+						"type": "String"
+					},
+					{
+						"name": "LAST_NAME",
+						"type": "String"
+					},
+					{
+						"name": "MIDDLE_NAME",
+						"type": "String"
+					},
+					{
+						"name": "SSN",
+						"type": "String"
+					},
+					{
+						"name": "DOB",
+						"type": "String"
+					},
+					{
+						"name": "GENDER",
+						"type": "String"
+					},
+					{
+						"name": "MEDICARE_ID",
+						"type": "String"
+					},
+					{
+						"name": "MEDICAID_ID",
+						"type": "String"
+					},
+					{
+						"name": "SUBSCRIBER_ID",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID1",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID2",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID3",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID4",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID5",
+						"type": "String"
+					},
+					{
+						"name": "MEMBERALTID6",
+						"type": "String"
+					},
+					{
+						"name": "RELATIONSHIP",
+						"type": "String"
+					},
+					{
+						"name": "ADDRESS1",
+						"type": "String"
+					},
+					{
+						"name": "ADDRESS2",
+						"type": "String"
+					},
+					{
+						"name": "CITY",
+						"type": "String"
+					},
+					{
+						"name": "STATE",
+						"type": "String"
+					},
+					{
+						"name": "ZIP",
+						"type": "String"
+					},
+					{
+						"name": "COUNTY",
+						"type": "String"
+					},
+					{
+						"name": "HOME_PHONE",
+						"type": "String"
+					},
+					{
+						"name": "MOBILE_PHONE",
+						"type": "String"
+					},
+					{
+						"name": "EMAIL_ADDRESS",
+						"type": "String"
+					},
+					{
+						"name": "MARITAL_STATUS",
+						"type": "String"
+					},
+					{
+						"name": "RACE",
+						"type": "String"
+					},
+					{
+						"name": "ETHNICITY",
+						"type": "String"
+					},
+					{
+						"name": "RBI_ETHNICITY",
+						"type": "String"
+					},
+					{
+						"name": "RACEETHNICITYSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGESPOKEN",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEWRITTEN",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEOTHER",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGESPOKENSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEWRITTENSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "LANGUAGEOTHERSOURCE",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE1",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE2",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE3",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE4",
+						"type": "String"
+					},
+					{
+						"name": "ALTERNATE_PHONE5",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_A",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_A_PHONE_1",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_A_PHONE_2",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_B",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_B_PHONE_1",
+						"type": "String"
+					},
+					{
+						"name": "AUTHORIZED_REP_B_PHONE_2",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_051')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Module3copydata2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "copydata2"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_l0a')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Module3copydata2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "copydata1in2",
+						"container": "copydata2"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EnrollmentcontractsExcel3')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -486,65 +2565,37 @@
 				"annotations": [],
 				"type": "Excel",
 				"typeProperties": {
-					"sheetName": "SRC_PlanCode",
+					"sheetName": "SRC_Enrollnment_contract",
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "SRC_PlanCode_xlx.xlsx",
+						"fileName": "SRC_Enrollnment_contract.xlsx",
 						"container": "memberrefdata"
 					},
 					"firstRowAsHeader": true
 				},
 				"schema": [
 					{
-						"name": "Plan_ID                             ",
+						"name": "Enrollment_Contract_ID",
 						"type": "String"
 					},
 					{
-						"name": "Plan_Start_Date",
+						"name": "Contract_Number",
 						"type": "String"
 					},
 					{
-						"name": "Plan_End_Date",
+						"name": "Contract_Desc",
 						"type": "String"
 					},
 					{
-						"name": "Plan_Name_Description            ",
+						"name": "Contract_Category_Code",
 						"type": "String"
 					},
 					{
-						"name": "Line_Of_Business                  ",
+						"name": "Line_Of_Business_Category_Code",
 						"type": "String"
 					},
 					{
-						"name": "Plan_Product_Code                 ",
-						"type": "String"
-					},
-					{
-						"name": "market_Type                       ",
-						"type": "String"
-					},
-					{
-						"name": "Grandfathered_Plan_Flag              ",
-						"type": "String"
-					},
-					{
-						"name": "Metal_level                        ",
-						"type": "String"
-					},
-					{
-						"name": "Acturial_Value ",
-						"type": "String"
-					},
-					{
-						"name": "Issuer_State",
-						"type": "String"
-					},
-					{
-						"name": "Issuer_ID",
-						"type": "String"
-					},
-					{
-						"name": "Plan_On_Off_Exchange_Indicator",
+						"name": "Line_Of_Business_Sub_Category_Code",
 						"type": "String"
 					}
 				]
@@ -552,66 +2603,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Source_Plan_benefits')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "MemberSourceBlob",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "SRC_PlanBenefits_excel.xlsx",
-						"container": "memberrefdata"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "Plan_Benefit_ID",
-						"type": "String"
-					},
-					{
-						"name": "Plan_Benefit_Start_Date",
-						"type": "String"
-					},
-					{
-						"name": "Plan_Benefit_End_Date",
-						"type": "String"
-					},
-					{
-						"name": "Plan_Benefit_Description",
-						"type": "String"
-					},
-					{
-						"name": "Line_Of_Business                  ",
-						"type": "String"
-					},
-					{
-						"name": "Plan_Product_Code                 ",
-						"type": "String"
-					},
-					{
-						"name": "Benefit_Plan_Type_Code",
-						"type": "String"
-					},
-					{
-						"name": "Population_Category_Code",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Source_benefit_plan_excel')]",
+			"name": "[concat(parameters('factoryName'), '/Excel1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -622,156 +2614,29 @@
 				"annotations": [],
 				"type": "Excel",
 				"typeProperties": {
-					"sheetName": "SRC_PlanBenefits",
+					"sheetName": "Sheet1",
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "SRC_PlanBenefits_excel.xlsx",
+						"fileName": "SRC_ReferenceData (2).xlsx",
 						"container": "memberrefdata"
 					},
 					"firstRowAsHeader": true
 				},
 				"schema": [
 					{
-						"name": "Plan_Benefit_ID",
+						"name": "Table",
 						"type": "String"
 					},
 					{
-						"name": "Plan_Benefit_Start_Date",
+						"name": "Field",
 						"type": "String"
 					},
 					{
-						"name": "Plan_Benefit_End_Date",
+						"name": "Reference_Code",
 						"type": "String"
 					},
 					{
-						"name": "Plan_Benefit_Description",
-						"type": "String"
-					},
-					{
-						"name": "Line_Of_Business                  ",
-						"type": "String"
-					},
-					{
-						"name": "Plan_Product_Code                 ",
-						"type": "String"
-					},
-					{
-						"name": "Benefit_Plan_Type_Code",
-						"type": "String"
-					},
-					{
-						"name": "Population_Category_Code",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlTable5')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Staging_P3_DB",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Plan_Benefit_ID",
-						"type": "varchar"
-					},
-					{
-						"name": "Plan_Benefit_Start_Date",
-						"type": "date"
-					},
-					{
-						"name": "Plan_Benefit_End_Date",
-						"type": "date"
-					},
-					{
-						"name": "Plan_Benefit_Description",
-						"type": "varchar"
-					},
-					{
-						"name": "Line_Of_Business",
-						"type": "varchar"
-					},
-					{
-						"name": "Plan_Product_Code",
-						"type": "varchar"
-					},
-					{
-						"name": "Benefit_Plan_Type_Code",
-						"type": "varchar"
-					},
-					{
-						"name": "Population_Category_Code",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "Plan_Benefits"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sourceplanbenefits')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "MemberSourceBlob",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "SRC_PlanBenefits.csv",
-						"container": "memberrefdata"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "Plan_Benefit_ID",
-						"type": "String"
-					},
-					{
-						"name": "Plan_Benefit_Start_Date",
-						"type": "String"
-					},
-					{
-						"name": "Plan_Benefit_End_Date",
-						"type": "String"
-					},
-					{
-						"name": "Plan_Benefit_Description",
-						"type": "String"
-					},
-					{
-						"name": "Line_Of_Business                  ",
-						"type": "String"
-					},
-					{
-						"name": "Plan_Product_Code                 ",
-						"type": "String"
-					},
-					{
-						"name": "Benefit_Plan_Type_Code",
-						"type": "String"
-					},
-					{
-						"name": "Population_Category_Code",
+						"name": "Reference_Code_Value",
 						"type": "String"
 					}
 				]
@@ -832,58 +2697,6 @@
 						"type": "String"
 					}
 				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlTable6')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Staging_P3_DB",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Plan_Benefit_ID",
-						"type": "varchar"
-					},
-					{
-						"name": "Plan_Benefit_Start_Date",
-						"type": "date"
-					},
-					{
-						"name": "Plan_Benefit_End_Date",
-						"type": "date"
-					},
-					{
-						"name": "Plan_Benefit_Description",
-						"type": "varchar"
-					},
-					{
-						"name": "Line_Of_Business",
-						"type": "varchar"
-					},
-					{
-						"name": "Plan_Product_Code",
-						"type": "varchar"
-					},
-					{
-						"name": "Benefit_Plan_Type_Code",
-						"type": "varchar"
-					},
-					{
-						"name": "Population_Category_Code",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "Plan_Benefits"
-				}
 			},
 			"dependsOn": []
 		}

@@ -11,6 +11,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'MemberSourceBlob'"
 		},
+		"Module3copydata1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Module3copydata1'"
+		},
+		"Module3copydata2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Module3copydata2'"
+		},
 		"REF_Data_P3MemberCSV_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'REF_Data_P3MemberCSV'"
@@ -45,6 +53,32 @@
 				"type": "AzureBlobStorage",
 				"typeProperties": {
 					"connectionString": "[parameters('MemberSourceBlob_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Module3copydata1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('Module3copydata1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Module3copydata2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('Module3copydata2_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -147,6 +181,463 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable10')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Staging_P3_DB",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Member_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Full_Name",
+						"type": "varchar"
+					},
+					{
+						"name": "First_Name",
+						"type": "varchar"
+					},
+					{
+						"name": "Middle_Name",
+						"type": "varchar"
+					},
+					{
+						"name": "Last_Name",
+						"type": "varchar"
+					},
+					{
+						"name": "SSN",
+						"type": "varchar"
+					},
+					{
+						"name": "Birth_Date",
+						"type": "date"
+					},
+					{
+						"name": "Gender_Code",
+						"type": "varchar"
+					},
+					{
+						"name": "Medicaid_ID",
+						"type": "varchar"
+					},
+					{
+						"name": "Medicare_ID",
+						"type": "varchar"
+					},
+					{
+						"name": "Subscriber_Key",
+						"type": "varchar"
+					},
+					{
+						"name": "MEMBERALTID1",
+						"type": "varchar"
+					},
+					{
+						"name": "MEMBERALTID2",
+						"type": "varchar"
+					},
+					{
+						"name": "MEMBERALTID3",
+						"type": "varchar"
+					},
+					{
+						"name": "MEMBERALTID4",
+						"type": "varchar"
+					},
+					{
+						"name": "MEMBERALTID5",
+						"type": "varchar"
+					},
+					{
+						"name": "MEMBERALTID6",
+						"type": "varchar"
+					},
+					{
+						"name": "RELATIONSHIP_CODE",
+						"type": "varchar"
+					},
+					{
+						"name": "Address_Line_1",
+						"type": "varchar"
+					},
+					{
+						"name": "Address_Line_2",
+						"type": "varchar"
+					},
+					{
+						"name": "City",
+						"type": "varchar"
+					},
+					{
+						"name": "State_Code",
+						"type": "varchar"
+					},
+					{
+						"name": "Zip",
+						"type": "varchar"
+					},
+					{
+						"name": "County",
+						"type": "varchar"
+					},
+					{
+						"name": "Member_Contact_Pref",
+						"type": "varchar"
+					},
+					{
+						"name": "Location_Usage_Type_Code",
+						"type": "char"
+					},
+					{
+						"name": "Location_Usage_Preference_Code",
+						"type": "char"
+					},
+					{
+						"name": "Phone_Number",
+						"type": "varchar"
+					},
+					{
+						"name": "Phone_Number_2",
+						"type": "varchar"
+					},
+					{
+						"name": "Phone_Usage_Type_Code",
+						"type": "varchar"
+					},
+					{
+						"name": "Phone_Usage_Preference_Code",
+						"type": "char"
+					},
+					{
+						"name": "Email_Address",
+						"type": "varchar"
+					},
+					{
+						"name": "Email_Usage_Type_Code",
+						"type": "char"
+					},
+					{
+						"name": "Email_Usage_Preference_Code",
+						"type": "char"
+					},
+					{
+						"name": "Marital_Status_Code",
+						"type": "varchar"
+					},
+					{
+						"name": "Race_Type",
+						"type": "varchar"
+					},
+					{
+						"name": "Race_Source",
+						"type": "varchar"
+					},
+					{
+						"name": "Ethnicity_Code",
+						"type": "varchar"
+					},
+					{
+						"name": "Ethnicity_Type",
+						"type": "varchar"
+					},
+					{
+						"name": "Ethnicity_Source",
+						"type": "varchar"
+					},
+					{
+						"name": "Deceased_Date",
+						"type": "date"
+					},
+					{
+						"name": "Language_Spoken",
+						"type": "varchar"
+					},
+					{
+						"name": "Language_Written",
+						"type": "varchar"
+					},
+					{
+						"name": "Language_Other",
+						"type": "varchar"
+					},
+					{
+						"name": "Language_Spoken_Source",
+						"type": "varchar"
+					},
+					{
+						"name": "Language_Written_Source",
+						"type": "varchar"
+					},
+					{
+						"name": "Language_Other_Source",
+						"type": "varchar"
+					},
+					{
+						"name": "Language_Usage_Type_Code",
+						"type": "char"
+					},
+					{
+						"name": "Language_Usage_Preference_Code",
+						"type": "char"
+					},
+					{
+						"name": "ALTERNATE_PHONE1",
+						"type": "varchar"
+					},
+					{
+						"name": "ALTERNATE_PHONE2",
+						"type": "varchar"
+					},
+					{
+						"name": "ALTERNATE_PHONE3",
+						"type": "varchar"
+					},
+					{
+						"name": "ALTERNATE_PHONE4",
+						"type": "varchar"
+					},
+					{
+						"name": "ALTERNATE_PHONE5",
+						"type": "varchar"
+					},
+					{
+						"name": "AUTHORIZED_REP_A",
+						"type": "varchar"
+					},
+					{
+						"name": "AUTHORIZED_REP_A_PHONE_1",
+						"type": "varchar"
+					},
+					{
+						"name": "AUTHORIZED_REP_A_PHONE_2",
+						"type": "varchar"
+					},
+					{
+						"name": "AUTHORIZED_REP_B",
+						"type": "varchar"
+					},
+					{
+						"name": "AUTHORIZED_REP_B_PHONE_1",
+						"type": "varchar"
+					},
+					{
+						"name": "AUTHORIZED_REP_B_PHONE_2",
+						"type": "varchar"
+					},
+					{
+						"name": "OREC",
+						"type": "varchar"
+					},
+					{
+						"name": "ECDS_Flag",
+						"type": "varchar"
+					},
+					{
+						"name": "Enrollee_Unique_ID",
+						"type": "varchar"
+					},
+					{
+						"name": "QHP_State",
+						"type": "varchar"
+					},
+					{
+						"name": "Citizenship_Status_Code",
+						"type": "varchar"
+					},
+					{
+						"name": "County_Fips_Code",
+						"type": "varchar"
+					},
+					{
+						"name": "White_Indirect_Estimate",
+						"type": "varchar"
+					},
+					{
+						"name": "Black_Indirect_Estimate",
+						"type": "varchar"
+					},
+					{
+						"name": "Asian_Indirect_Estimate",
+						"type": "varchar"
+					},
+					{
+						"name": "Ame_rIndian_Indirect_Estimate",
+						"type": "varchar"
+					},
+					{
+						"name": "Other_Indirect_Estimate",
+						"type": "varchar"
+					},
+					{
+						"name": "Hispanic_Indirect_Estimate",
+						"type": "varchar"
+					},
+					{
+						"name": "Client_ID_Number",
+						"type": "varchar"
+					},
+					{
+						"name": "CMS_PlanID",
+						"type": "varchar"
+					},
+					{
+						"name": "Client_Member_ID",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Member"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Staging_P3_DB')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable11')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Staging_P3_DB",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Member_Group_Code",
+						"type": "varchar"
+					},
+					{
+						"name": "Member_Group_Description",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Member_Group"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Staging_P3_DB')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable12')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Staging_P3_DB",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Member_Alternate_Identifier",
+						"type": "varchar"
+					},
+					{
+						"name": "Member_id",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Member_alternate_identifier"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Staging_P3_DB')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable13')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Staging_P3_DB",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Line_Of_Business_Category_Code",
+						"type": "varchar"
+					},
+					{
+						"name": "Line_Of_Business_Category_Code_Desc",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "REF_LineOfBusinessCategoryCode"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Staging_P3_DB')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable14')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Staging_P3_DB",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Ref_Data_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Ref_Table",
+						"type": "varchar"
+					},
+					{
+						"name": "Ref_Field",
+						"type": "varchar"
+					},
+					{
+						"name": "Reference_Code",
+						"type": "varchar"
+					},
+					{
+						"name": "Reference_Code_Description",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "REF_Data"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Staging_P3_DB')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlTable2')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -190,87 +681,28 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ContractCatCode')]",
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable3')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "MemberSourceBlob",
+					"referenceName": "Staging_P3_DB",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "DelimitedText",
+				"type": "AzureSqlTable",
+				"schema": [],
 				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "SRC_ContractCategoryCode.csv",
-						"container": "memberrefdata"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "Code ",
-						"type": "String"
-					},
-					{
-						"name": "Description",
-						"type": "String"
-					}
-				]
+					"schema": "dbo",
+					"table": "error_table1"
+				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/MemberSourceBlob')]"
+				"[concat(variables('factoryId'), '/linkedServices/Staging_P3_DB')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Excel1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "MemberSourceBlob",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "Sheet1",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "SRC_ReferenceData.xlsx",
-						"container": "memberrefdata"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "Table",
-						"type": "String"
-					},
-					{
-						"name": "Field",
-						"type": "String"
-					},
-					{
-						"name": "Reference_Code",
-						"type": "String"
-					},
-					{
-						"name": "Reference_Code_Value",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/MemberSourceBlob')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/IFnotnullSink')]",
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable4')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -300,7 +732,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/SInk_PopulationCatCode')]",
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable5')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -311,62 +743,42 @@
 				"annotations": [],
 				"type": "AzureSqlTable",
 				"schema": [
-					{
-						"name": "Population_Category_Code",
-						"type": "varchar"
-					},
-					{
-						"name": "Population_Category_Code_Desc",
-						"type": "varchar"
-					},
-					{
-						"name": "Line_Of_Business_Sub_Category_Code",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "REF_PopulationCategoryCode"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Staging_P3_DB')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Sink_BenefitPlan')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Staging_P3_DB",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Enrollment_Benefit_Plan_ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Enrollment_Contract_ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Plan_ID",
-						"type": "varchar"
-					},
 					{
 						"name": "Plan_Benefit_ID",
 						"type": "varchar"
+					},
+					{
+						"name": "Plan_Benefit_Start_Date",
+						"type": "date"
+					},
+					{
+						"name": "Plan_Benefit_End_Date",
+						"type": "date"
+					},
+					{
+						"name": "Plan_Benefit_Description",
+						"type": "varchar"
+					},
+					{
+						"name": "Line_Of_Business",
+						"type": "varchar"
+					},
+					{
+						"name": "Plan_Product_Code",
+						"type": "varchar"
+					},
+					{
+						"name": "Benefit_Plan_Type_Code",
+						"type": "varchar"
+					},
+					{
+						"name": "Population_Category_Code",
+						"type": "varchar"
 					}
 				],
 				"typeProperties": {
 					"schema": "dbo",
-					"table": "REF_BenefitPlantype"
+					"table": "Plan_Benefits"
 				}
 			},
 			"dependsOn": [
@@ -374,7 +786,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Sink_ContractCat')]",
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable6')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -386,206 +798,45 @@
 				"type": "AzureSqlTable",
 				"schema": [
 					{
-						"name": "Contract_Category_Code",
+						"name": "Plan_Benefit_ID",
 						"type": "varchar"
 					},
 					{
-						"name": "Contract_Category_Code_Desc",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "REF_ContractCategoryCode"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Staging_P3_DB')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Sink_LineOfBusSubCatCode')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Staging_P3_DB",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
+						"name": "Plan_Benefit_Start_Date",
+						"type": "date"
+					},
 					{
-						"name": "Line_Of_Business_Sub_Category_Code",
+						"name": "Plan_Benefit_End_Date",
+						"type": "date"
+					},
+					{
+						"name": "Plan_Benefit_Description",
 						"type": "varchar"
 					},
 					{
-						"name": "Line_Of_Business_Sub_Category_Code_Desc",
+						"name": "Line_Of_Business",
 						"type": "varchar"
 					},
 					{
-						"name": "Line_Of_Business_Category_Code",
+						"name": "Plan_Product_Code",
+						"type": "varchar"
+					},
+					{
+						"name": "Benefit_Plan_Type_Code",
+						"type": "varchar"
+					},
+					{
+						"name": "Population_Category_Code",
 						"type": "varchar"
 					}
 				],
 				"typeProperties": {
 					"schema": "dbo",
-					"table": "REF_LineOfBusinessSubCategoryCode"
+					"table": "Plan_Benefits"
 				}
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/Staging_P3_DB')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Sink_REF_LineofBusCatCode')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Staging_P3_DB",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Line_Of_Business_Category_Code",
-						"type": "varchar"
-					},
-					{
-						"name": "Line_Of_Business_Category_Code_Desc",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "REF_LineOfBusinessCategoryCode"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Staging_P3_DB')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Sink_RefData')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Staging_P3_DB",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Ref_Data_ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Ref_Table",
-						"type": "varchar"
-					},
-					{
-						"name": "Ref_Field",
-						"type": "varchar"
-					},
-					{
-						"name": "Reference_Code",
-						"type": "varchar"
-					},
-					{
-						"name": "Reference_Code_Description",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "REF_Data"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Staging_P3_DB')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SourceContractCatCode')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "MemberSourceBlob",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "SRC_ContractCategoryCode.csv",
-						"container": "memberrefdata"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "Code ",
-						"type": "String"
-					},
-					{
-						"name": "Description",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/MemberSourceBlob')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Source_LineOfBusSubCatCode')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "MemberSourceBlob",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "SRC_LineOfBusinessSubCategoryCode.csv",
-						"container": "memberrefdata"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "Code",
-						"type": "String"
-					},
-					{
-						"name": "Description",
-						"type": "String"
-					},
-					{
-						"name": "LOBCategory",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/MemberSourceBlob')]"
 			]
 		}
 	]
